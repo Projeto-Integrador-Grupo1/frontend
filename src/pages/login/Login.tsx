@@ -1,50 +1,118 @@
-import React from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import Logo from '../../assets/img/zerone-logo.png'
+
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import { RotatingLines } from 'react-loader-spinner';
+
+import UsuarioLogin from '../../models/UsuarioLogin';
+
 import './Login.css';
 
 function Login() {
-  
+
+  const navigate = useNavigate();
+
+  const [usuarioLogin, setUsuarioLogin] = useState<UsuarioLogin>(
+    {} as UsuarioLogin
+  );
+
+  const { usuario, handleLogin, isLoading } = useContext(AuthContext);
+
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    setUsuarioLogin({
+      ...usuarioLogin,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  function login(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
+    handleLogin(usuarioLogin)
+  }
+
+  useEffect(() => {
+    if (usuario.token !== "") {
+      navigate('/home')
+    }
+  }, [usuario])
+
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center font-bold ">
-        <form className="flex justify-center items-center flex-col w-1/2 gap-4" >
-          <h2 className="text-slate-900 text-5xl ">Entrar</h2>
+      <div className="flex justify-center mx-[20vw] my-[5vh] bg-blue-100 py-[10vh] rounded-2xl font-bold">
+
+
+        <form className="space-y-6 flex justify-center items-center flex-col w-2/3 gap-4" action="#" method="POST" onSubmit={login}>
+          <div className="">
+            <img
+              className="h-40"
+              src={Logo}
+              alt="Your Company"
+            />
+
+          </div>
+          <h2 className="text-slate-900 text-5xl">
+            Login
+          </h2>
           <div className="flex flex-col w-full">
-            <label htmlFor="usuario">Usuário</label>
-            <input
-              type="text"
-              id="usuario"
-              name="usuario"
-              placeholder="Usuario"
+            <label htmlFor="email">
+              Email
+            </label>
+            <input placeholder='email@email.com'
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
               className="border-2 border-slate-700 rounded p-2"
-            
+              value={usuarioLogin.email}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
+
           <div className="flex flex-col w-full">
-            <label htmlFor="senha">Senha</label>
-            <input
-              type="password"
+            <label htmlFor="senha">
+              Senha
+            </label>
+            <input placeholder='senha'
               id="senha"
               name="senha"
-              placeholder="Senha"
+              type="password"
+              // autoComplete="current-password"
+              required
               className="border-2 border-slate-700 rounded p-2"
-             
+              value={usuarioLogin.senha}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
+
           </div>
-          <button  type='submit' className="rounded bg-indigo-400 hover:bg-indigo-900 text-white w-1/2 py-2 flex justify-center">
-            <span>Entrar</span>
-          </button>
 
-          <hr className="border-slate-800 w-full" />
+          <div>
+            <button
+              type="submit"
+              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              {isLoading ? <RotatingLines
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="24"
+                visible={true}
+              /> :
+                <span>Entrar</span>}
+            </button>
 
-          <p>
-            Ainda não tem uma conta?{' '}
-           
-          </p>
+            <p className="mt-10 text-center text-sm text-gray-500">
+              Ainda não tem conta?{' '}
+              <Link to="/cadastro" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                Cadastre-se
+              </Link>
+            </p>
+          </div>
         </form>
-        <div className="fundoLogin hidden lg:block"></div>
       </div>
     </>
-  );
+  )
 }
 
 export default Login;
