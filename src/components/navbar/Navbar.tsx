@@ -8,7 +8,6 @@ function Navbar() {
   const { usuario, handleLogout } = useContext(AuthContext)
 
   function logout() {
-      task10-alertaspersonalizados
       handleLogout()
       ToastAlert('Usuário deslogado com sucesso', Toast.Sucess)
       navigate('/login')
