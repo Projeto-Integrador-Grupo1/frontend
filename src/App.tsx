@@ -11,10 +11,14 @@ import ListaCategorias from "./components/categorias/listaCategorias/ListaCatego
 import FormCategoria from "./components/categorias/formCategoria/FormCategoria"
 import DeletarCategoria from "./components/categorias/deletarCategoria/DeletarCategoria"
 
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify"
+
 function App() {
   return (
     <>
       <AuthProvider>
+        <ToastContainer />
         <BrowserRouter>
           <Navbar />
           <Routes>

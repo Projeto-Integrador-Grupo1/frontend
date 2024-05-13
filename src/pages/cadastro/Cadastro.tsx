@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import Usuario from "../../models/Usuario"
 import { cadastrarUsuario } from "../../services/Services"
 import { RotatingLines } from "react-loader-spinner"
+import { Toast, ToastAlert } from "../../utils/ToastAlert"
 
 function Cadastro() {
   const navigate = useNavigate()
@@ -54,6 +55,40 @@ function Cadastro() {
     })
   }
 
+    async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        if (confirmarSenha === usuario.senha && usuario.senha.length >= 8) {
+            setIsLoading(true)
+
+            try {
+                await cadastrar(`/usuarios/cadastrar`, usuario, setUsuario)
+                ToastAlert('Usuário cadastrado com sucesso', Toast.Sucess)
+            } catch (error) {
+                ToastAlert('Erro ao cadastrar usuário', Toast.Error)
+            }
+        } else {
+            ToastAlert('Dados inconsistentes. Verifique as informações de cadastro.', Toast.Warning)
+            setUsuario({ ...usuario, senha: "" })
+            setConfirmarSenha("")
+        }
+
+        setIsLoading(false)
+    }
+
+    function retornar() {
+        navigate('/login')
+    }
+
+    function handleConfirmarSenha(e: ChangeEvent<HTMLInputElement>) {
+        setConfirmarSenha(e.target.value)
+    }
+
+    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+        setUsuario({
+            ...usuario,
+            [e.target.name]: e.target.value
+        })
+      
   useEffect(() => {
     if (usuario.id !== 0) {
       retornar()

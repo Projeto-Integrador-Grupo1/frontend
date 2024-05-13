@@ -1,16 +1,19 @@
 import { useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
+import { Toast, ToastAlert } from "../../utils/ToastAlert"
 
 function Navbar() {
   const navigate = useNavigate()
   const { usuario, handleLogout } = useContext(AuthContext)
 
   function logout() {
-    handleLogout()
-    alert("Usuário deslogado com sucesso")
-    navigate("/login")
-  }
+      task10-alertaspersonalizados
+      handleLogout()
+      ToastAlert('Usuário deslogado com sucesso', Toast.Sucess)
+      navigate('/login')
+  }  
+
   return (
     <>
       <div className="w-full bg-indigo-900 text-white flex justify-center py-4">
