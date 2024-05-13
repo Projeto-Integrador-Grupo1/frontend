@@ -1,12 +1,17 @@
+import Carousel from '../../components/carousel/Carousel'
 import { Link } from "react-router-dom"
+import CarouselCard from '../../components/carouselCard/CarouselCard'
 
 function Home() {
   return (
     <>
-      <div className="bg-white">
         <div className="relative isolate pt-14 flex items-center flex-col">
-          <div className="container text-center m-4 p-20 mb-20">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+
+          <div className="container text-center">
+            <div>
+              <Carousel />
+            </div>
+            {/* <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Sua ajuda pode contribuir positivamente para o desenvolvimento da
               sociedade!
             </h1>
@@ -23,7 +28,8 @@ function Home() {
               >
                 Confira todos os projetos
               </Link>
-            </div>
+            </div> */}
+
           </div>
 
           <div className="bg-gray-50 mt-26 w-full flex justify-center">
@@ -31,7 +37,11 @@ function Home() {
               <h2 className=" font-bold text-3xl my-4 border-b-2 py-2 ">
                 Projetos em Destaque esta semana:
               </h2>
-              <div className=" flex p-4 my-10 justify-between gap-6">
+
+              <CarouselCard/>
+
+              
+              {/* <div className=" flex p-4 my-10 justify-between gap-6">
                 <div className="">
                   <div className="rounded p-4 bg-white shadow-md">
                     <img
@@ -81,7 +91,7 @@ function Home() {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -177,7 +187,6 @@ function Home() {
             </div>
           </div>
         </div>
-      </div>
     </>
   )
 }
