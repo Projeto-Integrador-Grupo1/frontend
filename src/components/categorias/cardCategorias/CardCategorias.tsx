@@ -11,7 +11,7 @@ function CardCategorias({ categoria }: CardCategoriaProps) {
     <div className="border rounded h-60 shadow">
       <div className="rounded p-4 px-8 h-full flex flex-col justify-end text-white inside-shadow relative">
         <img
-          className="absolute top-0 left-0 w-full h-full -z-10"
+          className="absolute top-0 left-0 w-full h-full -z-10 object-cover"
           src="https://www.conteudoinboundmarketing.com.br/wp-content/uploads/2019/11/iStock-1047716020-1024x684.jpg"
           alt=""
         />
