@@ -8,10 +8,10 @@ function Navbar() {
   const { usuario, handleLogout } = useContext(AuthContext)
 
   function logout() {
-      handleLogout()
-      ToastAlert('Usuário deslogado com sucesso', Toast.Sucess)
-      navigate('/login')
-  }  
+    handleLogout()
+    ToastAlert('Usuário deslogado com sucesso', Toast.Sucess)
+    navigate('/login')
+  }
 
   return (
     <>
@@ -24,7 +24,9 @@ function Navbar() {
             <Link to="/login" className="hover:underline">
               Login
             </Link>
-            <div className="hover:underline">Projetos</div>
+            <Link to="/projetos" className="hover:underline">
+              Projetos
+            </Link>
             <Link to="/categorias" className="hover:underline">
               Categorias
             </Link>
