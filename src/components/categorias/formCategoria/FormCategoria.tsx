@@ -3,15 +3,19 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../../../contexts/AuthContext"
 import Categoria from "../../../models/Categoria"
 import { atualizar, buscar, cadastrar } from "../../../services/Services"
+import { Toast, ToastAlert } from "../../../utils/ToastAlert"
+import { RotatingLines } from "react-loader-spinner"
 
 function FormularioCategoria() {
+
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria)
+  const [isLoading, setIsLoading] = useState(false)
 
   let navigate = useNavigate()
 
   const { id } = useParams<{ id: string }>()
 
-  const { usuario, handleLogout } = useContext(AuthContext)
+  const { usuario, handleLogout} = useContext(AuthContext)
   const token = usuario.token
 
   async function buscarPorId(id: string) {
@@ -39,6 +43,7 @@ function FormularioCategoria() {
 
   async function gerarNovoCategoria(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault()
+    setIsLoading(true)
 
     if (id !== undefined) {
       try {
@@ -48,15 +53,16 @@ function FormularioCategoria() {
           },
         })
 
-        alert("Categoria atualizado com sucesso")
+        ToastAlert('Categoria atualizado com sucesso', Toast.Sucess)
         retornar()
       } catch (error: any) {
         if (error.toString().includes("403")) {
-          alert("O token expirou, favor logar novamente")
+          ToastAlert('O token expirou, favor logar novamente', Toast.Info)
           handleLogout()
         } else {
-          alert("Erro ao atualizar o Categoria")
+          ToastAlert('Erro ao atualizar o Categoria', Toast.Warning)
         }
+        setIsLoading(false)
       }
     } else {
       try {
@@ -66,14 +72,15 @@ function FormularioCategoria() {
           },
         })
 
-        alert("Categoria cadastrado com sucesso")
+        ToastAlert("Categoria cadastrado com sucesso", Toast.Sucess)
       } catch (error: any) {
         if (error.toString().includes("403")) {
-          alert("O token expirou, favor logar novamente")
+          ToastAlert("O token expirou, favor logar novamente", Toast.Info)
           handleLogout()
         } else {
-          alert("Erro ao cadastrado o Categoria")
+          ToastAlert("Erro ao cadastrado o Categoria", Toast.Warning)
         }
+        setIsLoading(false)
       }
     }
 
@@ -86,7 +93,7 @@ function FormularioCategoria() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado")
+      ToastAlert("Você precisa estar logado", Toast.Info)
       navigate("/login")
     }
   }, [token])
@@ -119,10 +126,18 @@ function FormularioCategoria() {
           />
         </div>
         <button
-          className="rounded text-slate-100 bg-indigo-400 hover:bg-indigo-800 w-1/2 py-2 mx-auto block"
+          className="rounded flex justify-center text-slate-100 bg-indigo-400 hover:bg-indigo-800 w-1/2 py-2 mx-auto"
           type="submit"
+          disabled = {isLoading}
         >
-          {id === undefined ? "Cadastrar" : "Editar"}
+          {isLoading ? <RotatingLines
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="24"
+                visible={true}
+              /> :
+                <span>{id === undefined ? "Cadastrar" : "Editar"}</span>}
         </button>
       </form>
     </div>
