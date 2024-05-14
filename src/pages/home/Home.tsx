@@ -129,7 +129,7 @@ function Home() {
                     </p>
 
                     <button className=" text-center font-semibold text-white bg-indigo-900 rounded p-2 mt-4">
-                      <Link to="/page-project">Conheça este projeto</Link>
+                      <Link to="/projetos">Conheça este projeto</Link>
                     </button>
                   </div>
                 </div>
@@ -154,7 +154,7 @@ function Home() {
                     </p>
 
                     <button className=" text-center font-semibold text-white bg-indigo-900 rounded p-2 mt-4">
-                      <Link to="/page-project">Conheça este projeto</Link>
+                      <Link to="/projetos">Conheça este projeto</Link>
                     </button>
                   </div>
                 </div>
@@ -179,7 +179,7 @@ function Home() {
                     </p>
 
                     <button className=" text-center font-semibold text-white bg-indigo-900 rounded p-2 mt-4">
-                      <Link to="/page-project">Conheça este projeto</Link>
+                      <Link to="/projetos">Conheça este projeto</Link>
                     </button>
                   </div>
                 </div>
