@@ -2,12 +2,13 @@ import Carousel from '../../components/carousel/Carousel'
 import { Link } from "react-router-dom"
 import CarouselCard from '../../components/carouselCard/CarouselCard'
 
+
 function Home() {
   return (
     <>
-        <div className="relative isolate pt-14 flex items-center flex-col">
+        <div className=" bg-blue-50 relative isolate flex items-center flex-col">
 
-          <div className="container text-center">
+          <div className="relative w-screen overflow-hidden  text-center">
             <div>
               <Carousel />
             </div>
@@ -32,9 +33,9 @@ function Home() {
 
           </div>
 
-          <div className="bg-gray-50 mt-26 w-full flex justify-center">
+          <div className="bg-blue-50 mt-26 w-full flex justify-center">
             <div className="container">
-              <h2 className=" font-bold text-3xl my-4 border-b-2 py-2 ">
+              <h2 className=" font-bold text-3xl my-6 border-b-2 py-6 ">
                 Projetos em Destaque esta semana:
               </h2>
 
@@ -95,15 +96,9 @@ function Home() {
             </div>
           </div>
 
-          <div className="my-16 w-full flex justify-center ">
-            <div className="container">
-              <h2 className=" font-bold text-3xl my-4 border-b-2 py-2">
-                Categorias:
-              </h2>
-            </div>
-          </div>
+          
 
-          <div className="bg-gray-50 w-full flex justify-center">
+          <div className="bg-blue-50 w-full flex justify-center">
             <div className="container">
               <h2 className=" font-bold text-3xl my-4 border-b-2 py-2">
                 Projetos que se tornaram reais:
