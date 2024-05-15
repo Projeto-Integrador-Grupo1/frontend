@@ -14,7 +14,6 @@ import DeletarCategoria from "./components/categorias/deletarCategoria/DeletarCa
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-toastify"
-import FormularioProjeto from "./components/projetos/formProjeto/FormProjeto"
 import ModalProjeto from "./components/projetos/modalProjeto/ModalProjeto"
 import DeletarProjeto from "./components/projetos/deletarProjeto/DeletarProjeto"
 
@@ -26,7 +25,7 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/home" element={<Home />} />

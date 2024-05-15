@@ -41,7 +41,7 @@ function FormularioProjeto() {
         usuario: null,
     });
 
-    async function buscarPojetoPorId(id: string) {
+    async function buscarProjetoPorId(id: string) {
         await buscar(`/projetos/${id}`, setProjeto, {
             headers: {
                 Authorization: token,
@@ -77,7 +77,7 @@ function FormularioProjeto() {
         buscarCategorias()
 
         if (id !== undefined) {
-            buscarPojetoPorId(id)
+            buscarProjetoPorId(id)
         }
 
     }, [id])
