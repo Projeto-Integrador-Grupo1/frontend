@@ -18,8 +18,19 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    // "outDir": "./lib/cjs/",
+    // "sourceMap": true,
+    // "declaration": true,
+    // "noImplicitAny": true,
+    // "module": "commonjs",
+    // "target": "es5",
+    // "allowJs": true,
+    // "moduleResolution": "node"
+
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*.ts*"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "exclude": ["node_modules", "dist", "lib"]
 }
