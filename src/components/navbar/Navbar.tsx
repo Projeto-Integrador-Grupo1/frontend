@@ -38,7 +38,7 @@ function Navbar() {
             <div className="hover:underline">Perfil</div>
      
             <Link to="" onClick={logout} className="hover:underline">
-              Sai
+              Sair
             </Link>
           </div>
         </div>
