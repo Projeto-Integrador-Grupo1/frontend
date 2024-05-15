@@ -12,11 +12,12 @@ import ListaCategorias from "./components/categorias/listaCategorias/ListaCatego
 import FormCategoria from "./components/categorias/formCategoria/FormCategoria"
 import DeletarCategoria from "./components/categorias/deletarCategoria/DeletarCategoria"
 
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
 import FormularioProjeto from "./components/projetos/formProjeto/FormProjeto"
 import ModalProjeto from "./components/projetos/modalProjeto/ModalProjeto"
 import DeletarProjeto from "./components/projetos/deletarProjeto/DeletarProjeto"
+import Projeto from "./pages/projeto/Projeto"
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
               path="/deletarCategoria/:id"
               element={<DeletarCategoria />}
             />
+            <Route path="/projeto/:id" element={<Projeto />} />
           </Routes>
           <Footer />
         </BrowserRouter>
