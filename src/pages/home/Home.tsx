@@ -121,12 +121,7 @@ function Home() {
                       Nome do projeto
                     </h3>
 
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Ipsam exercitationem provident nihil molestias,
-                      reprehenderit tenetur eos. Laudantium at accusamus aut
-                      fuga, qui omnis provident quasi nemo vero odit odio amet?
-                    </p>
+
 
                     <button className=" text-center font-semibold text-white bg-indigo-900 rounded p-2 mt-4">
                       <Link to="/projetos">Conheça este projeto</Link>
@@ -146,13 +141,6 @@ function Home() {
                       Nome do projeto
                     </h3>
 
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Ipsam exercitationem provident nihil molestias,
-                      reprehenderit tenetur eos. Laudantium at accusamus aut
-                      fuga, qui omnis provident quasi nemo vero odit odio amet?
-                    </p>
-
                     <button className=" text-center font-semibold text-white bg-indigo-900 rounded p-2 mt-4">
                       <Link to="/projetos">Conheça este projeto</Link>
                     </button>
@@ -171,12 +159,7 @@ function Home() {
                       Nome do projeto
                     </h3>
 
-                    <p>
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Ipsam exercitationem provident nihil molestias,
-                      reprehenderit tenetur eos. Laudantium at accusamus aut
-                      fuga, qui omnis provident quasi nemo vero odit odio amet?
-                    </p>
+       
 
                     <button className=" text-center font-semibold text-white bg-indigo-900 rounded p-2 mt-4">
                       <Link to="/projetos">Conheça este projeto</Link>
