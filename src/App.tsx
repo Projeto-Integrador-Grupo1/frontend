@@ -18,6 +18,7 @@ import ModalProjeto from "./components/projetos/modalProjeto/ModalProjeto"
 import DeletarProjeto from "./components/projetos/deletarProjeto/DeletarProjeto"
 import Projeto from "./pages/projeto/Projeto"
 import Perfil from "./pages/usuario/perfil/Perfil"
+import NavbarPerfil from "./components/navbar/navbarPerfil/NavbarPerfil"
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             />
             <Route path="/projeto/:id" element={<Projeto />} />
             <Route path="/perfil" element={<Perfil />} />
+            <Route path="/perfils" element={<NavbarPerfil />} />
           </Routes>
           <Footer />
         </BrowserRouter>

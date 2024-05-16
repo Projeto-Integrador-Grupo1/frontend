@@ -26,7 +26,7 @@ function CardProjetosUsuario({ projeto }: CardProjetosUsuarioProps) {
 
             <div className=" flex flex-col justify-between ">
                 <Card
-                    className="max-w-sm"
+                    className="max-w-xl"
                     imgAlt="Meaningful alt text for an image that is not purely decorative"
                     imgSrc={projeto.linkMidia}
                 >
@@ -61,14 +61,16 @@ function CardProjetosUsuario({ projeto }: CardProjetosUsuarioProps) {
                     <div className="flex justify-between">
 
                         <Link to={`/editarProjeto/${projeto.id}`}>
+                            <div >
+                                <Button className="px-20 max-sm:px-14 max-md:px-20 max-lg:px-20 max-xl:px-16 max-2xl:px-14 bg-blue-500">
+                                    Editar
+                                </Button>
+                            </div>
 
-                            <Button className="px-20 bg-blue-500">
-                                Editar
-                            </Button>
                         </Link>
 
                         <Link to={`/deletarProjeto/${projeto.id}`}>
-                            <Button className="px-4 bg-red-500">
+                            <Button className="px-2 bg-red-500">
                                 <Trash size={20} />
                             </Button>
                         </Link>
