@@ -11,11 +11,11 @@ import { Link } from "react-router-dom"
 function NavbarPerfil() {
     const navigate = useNavigate()
     const { usuario, handleLogout } = useContext(AuthContext)
-  
+
     function logout() {
-      handleLogout()
-      ToastAlert('Usuário deslogado com sucesso', Toast.Sucess)
-      navigate('/login')
+        handleLogout()
+        ToastAlert('Usuário deslogado com sucesso', Toast.Sucess)
+        navigate('/login')
     }
 
     return (
@@ -31,16 +31,25 @@ function NavbarPerfil() {
                     <span className="block text-sm">{usuario.nome}</span>
                     <span className="block truncate text-sm font-medium">{usuario.email}</span>
                 </Dropdown.Header>
-                <Dropdown.Item>
-                    <Link to="/perfil" className="hover:underline">Perfil</Link>
-                </Dropdown.Item>
-                <Dropdown.Item>
-                    <Link to="/perfil" className="hover:underline">Meus projetos</Link>
-                </Dropdown.Item>
+                <Link to="/perfil" className="hover:underline">
+                    <Dropdown.Item>
+                        Perfil
+                    </Dropdown.Item>
+                </Link>
+                
+                <Link to="/perfil" className="hover:underline">
+                    <Dropdown.Item>
+                        Meus projetos
+                    </Dropdown.Item>
+                </Link>
+
                 <Dropdown.Divider />
-                <Dropdown.Item>
-                    <Link to="" onClick={logout} className="hover:underline">Sair</Link>
-                </Dropdown.Item>
+
+                <Link to="" onClick={logout} className="hover:underline">
+                    <Dropdown.Item>
+                        Sair
+                    </Dropdown.Item>
+                </Link>
             </Dropdown>
         </div>
     )
