@@ -50,7 +50,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
 
                     <div className="flex justify-between">
                         <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
-                            Apoiadores: {projeto.qtdDoacoes}
+                            Investimentos: {projeto.qtdDoacoes}
                         </p>
                         <p className="font-semibold text-gray-600 dark:text-gray-400 my-0">
                             Início: {dataLocal}
@@ -58,7 +58,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                     </div>
 
                     <Button className="px-6 bg-green-600 ">
-                        <Link to={`/projeto/${projeto.id}`}>Ver seu projeto</Link>
+                        <Link to={`/projeto/${projeto.id}`}>Ver meu projeto</Link>
 
                         <svg
                             className="-mr-1 mt-1 ml-2 h-4 w-4"
@@ -77,7 +77,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                 </Card>
             </div>
         )
-    }else{
+    } else {
         cardComponent = (
             <div className=" flex flex-col justify-between ">
                 <Card
@@ -106,7 +106,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
 
                     <div className="flex justify-between">
                         <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
-                            Apoiadores: {projeto.qtdDoacoes}
+                            Investimentos: {projeto.qtdDoacoes}
                         </p>
                         <p className="font-semibold text-gray-600 dark:text-gray-400 my-0">
                             Início: {dataLocal}
