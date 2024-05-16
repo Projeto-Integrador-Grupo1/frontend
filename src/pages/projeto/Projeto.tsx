@@ -1,11 +1,12 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import ProjetoModel from "../../models/Projeto"
 import { Toast, ToastAlert } from "../../utils/ToastAlert"
 import { AuthContext } from "../../contexts/AuthContext"
 import { atualizar, buscar } from "../../services/Services"
 import { DNA, RotatingLines } from "react-loader-spinner"
 import moment from "moment"
+import { Button } from "flowbite-react"
 
 function Projeto() {
   const [projeto, setProjeto] = useState<ProjetoModel>({
@@ -66,7 +67,7 @@ function Projeto() {
         ToastAlert("O token expirou, favor logar novamente", Toast.Error)
         handleLogout()
       } else {
-        ToastAlert("Erro ao atualizar o Projeto", Toast.Error)
+        ToastAlert("Erro ao realizar a doação. Tente novamente", Toast.Error)
       }
     }
   }
@@ -87,13 +88,6 @@ function Projeto() {
       setdisableButton(false)
     }
   }
-
-  useEffect(() => {
-    if (token === "") {
-      ToastAlert("Você precisa estar logado", Toast.Info)
-      navigate("/login")
-    }
-  }, [token])
 
   useEffect(() => {
     if (id !== undefined) {
@@ -146,41 +140,51 @@ function Projeto() {
               <span className="text-gray-500">dias restantes</span>
 
               <div className="border-t py-2 mt-8">
-                <h3 className="text-xl font-bold my-4">Faça uma doação:</h3>
+                {token !== "" ? (
+                  <>
+                    <h3 className="text-xl font-bold my-4">Faça uma doação:</h3>
 
-                <form onSubmit={doar} className="flex gap-2">
-                  <label htmlFor="valor">
-                    <span>R$ </span>
-                    <input
-                      id="valor"
-                      type="number"
-                      placeholder="Digite um valor"
-                      className="border border-slate-700 rounded p-2"
-                      name="valor"
-                      value={valorDoacao}
-                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                        setValorDoacao(+e.target.value)
-                      }
-                    />
-                  </label>
-                  <button
-                    disabled={disableButton}
-                    type="submit"
-                    className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold flex justify-center items-center p-2"
-                  >
-                    {disableButton ? (
-                      <RotatingLines
-                        strokeColor="white"
-                        strokeWidth="5"
-                        animationDuration="0.75"
-                        width="24"
-                        visible={true}
-                      />
-                    ) : (
-                      "Enviar"
-                    )}
-                  </button>
-                </form>
+                    <form onSubmit={doar} className="flex gap-2">
+                      <label htmlFor="valor">
+                        <span>R$ </span>
+                        <input
+                          id="valor"
+                          type="number"
+                          placeholder="Digite um valor"
+                          className="border border-slate-700 rounded p-2"
+                          name="valor"
+                          value={valorDoacao}
+                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                            setValorDoacao(+e.target.value)
+                          }
+                        />
+                      </label>
+                      <Button
+                        color="blue"
+                        disabled={disableButton}
+                        type="submit"
+                      >
+                        {disableButton ? (
+                          <RotatingLines
+                            strokeColor="white"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="24"
+                            visible={true}
+                          />
+                        ) : (
+                          "Enviar"
+                        )}
+                      </Button>
+                    </form>
+                  </>
+                ) : (
+                  <Link to="/login">
+                    <Button color="success" className="mt-4">
+                      Apoiar
+                    </Button>
+                  </Link>
+                )}
               </div>
             </div>
           </div>
