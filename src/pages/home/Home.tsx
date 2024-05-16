@@ -41,12 +41,12 @@ function Home() {
           </div>
         </div>
 
-        <div className="bg-blue-50 mt-26 w-full flex justify-center">
+        <div className="bg-blue-50 w-full flex justify-center pt-24">
           <div className="container">
-            <h2 className=" font-bold text-3xl my-6 border-b-2 py-4 ">
+            <h2 className=" font-bold text-3xl my-6 border-b-2 py-4 px-6">
               Projetos em destaque:
             </h2>
-            <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+            <div className='container py-6 px-6 mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
               {projetosDestaque.map((projeto) => (
                 <div >
                   <div>
@@ -58,12 +58,12 @@ function Home() {
           </div>
         </div>
 
-        <div className=" w-full flex justify-center">
+        <div className=" w-full flex justify-center py-12">
           <div className="container">
-            <h2 className="font-bold text-3xl my-4 border-b-2 py-2">
+            <h2 className="font-bold text-3xl my-4 border-b-2 py-4 px-6 ">
               Projetos mais recentes:
             </h2>
-            <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+            <div className='container py-8 px-6 mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
               {projetosRecentes.map((projeto) => (
 
                 <div >

@@ -3,6 +3,8 @@ import { AuthContext } from "../../../contexts/AuthContext"
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { Button, Card } from "flowbite-react"
+import imgFotoUsuario from "../../../assets/imgSemFotoUsuario.png"
+
 
 interface CardProjetosProps {
     projeto: Projeto
@@ -37,7 +39,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         <img
                             src={
                                 projeto.usuario?.foto === " " || null
-                                    ? "https://tempodepolitica.com.br/wp-content/uploads/2020/05/sh_ong_111901871.jpg"
+                                    ? imgFotoUsuario
                                     : projeto.usuario?.foto
                             }
                             className="h-8 w-8 rounded-full"
@@ -93,7 +95,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         <img
                             src={
                                 projeto.usuario?.foto === " " || null
-                                    ? "https://tempodepolitica.com.br/wp-content/uploads/2020/05/sh_ong_111901871.jpg"
+                                    ? imgFotoUsuario
                                     : projeto.usuario?.foto
                             }
                             className="h-8 w-8 rounded-full"

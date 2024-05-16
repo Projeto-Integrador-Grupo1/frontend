@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
 import { Toast, ToastAlert } from "../../utils/ToastAlert"
 import imgLogo from "../../assets/img/zerone-logo.png"
-import { Avatar, Dropdown } from "flowbite-react"
 import NavbarPerfil from "./navbarPerfil/NavbarPerfil"
 
 
@@ -32,13 +31,7 @@ function Navbar() {
           </Link>
           <div className="flex gap-4 mr-4">
             <Link to="/projetos" className="hover:underline">
-              Explorar
-            </Link>
-            <Link to="/categorias" className="hover:underline">
-              Categorias
-            </Link>
-            <Link to="/cadastroCategoria" className="hover:underline">
-              Cadastrar categoria
+              Projetos
             </Link>
             <Link to="/sobre" className="hover:underline">
               Quem somos
