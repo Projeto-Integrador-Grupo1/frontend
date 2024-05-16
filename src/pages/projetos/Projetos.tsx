@@ -1,7 +1,11 @@
 import ListaProjetos from "../../components/projetos/listaProjetos/ListaProjetos";
 import { Link } from "react-router-dom"
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from "../../contexts/AuthContext";
+import Categoria from "../../models/Categoria";
+import { buscar } from "../../services/Services";
+import { Toast, ToastAlert } from "../../utils/ToastAlert";
+import Projeto from "../../models/Projeto";
 
 
 function Projetos() {
