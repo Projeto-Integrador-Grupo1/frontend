@@ -17,6 +17,7 @@ import { ToastContainer } from "react-toastify"
 import ModalProjeto from "./components/projetos/modalProjeto/ModalProjeto"
 import DeletarProjeto from "./components/projetos/deletarProjeto/DeletarProjeto"
 import Projeto from "./pages/projeto/Projeto"
+import Perfil from "./pages/usuario/perfil/Perfil"
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
               element={<DeletarCategoria />}
             />
             <Route path="/projeto/:id" element={<Projeto />} />
+            <Route path="/perfil" element={<Perfil />} />
           </Routes>
           <Footer />
         </BrowserRouter>
