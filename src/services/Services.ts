@@ -1,7 +1,7 @@
 import axios from "axios"
 
-const api = axios.create({
-  baseURL: "https://zerone-ss3m.onrender.com/",
+export const api = axios.create({
+  baseURL:import.meta.env.VITE_API_URL,
 })
 
 export const cadastrarUsuario = async (
