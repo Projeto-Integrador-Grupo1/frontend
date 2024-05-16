@@ -32,13 +32,7 @@ function Navbar() {
           </Link>
           <div className="flex items-center gap-4 mr-4">
             <Link to="/projetos" className="hover:underline">
-              Explorar
-            </Link>
-            <Link to="/categorias" className="hover:underline">
-              Categorias
-            </Link>
-            <Link to="/cadastroCategoria" className="hover:underline">
-              Cadastrar categoria
+              Projetos
             </Link>
             <Link to="/sobre" className="hover:underline">
               Quem somos

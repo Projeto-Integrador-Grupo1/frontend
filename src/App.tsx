@@ -19,6 +19,7 @@ import DeletarProjeto from "./components/projetos/deletarProjeto/DeletarProjeto"
 import Projeto from "./pages/projeto/Projeto"
 import Perfil from "./pages/usuario/perfil/Perfil"
 import NavbarPerfil from "./components/navbar/navbarPerfil/NavbarPerfil"
+import PageCategorias from "./pages/categorias/PageCategorias"
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/home" element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
-            <Route path="/categorias" element={<ListaCategorias />} />
+            <Route path="/categorias" element={<PageCategorias />} />
             <Route path="/cadastroCategoria" element={<FormCategoria />} />
             <Route path="/editarCategoria/:id" element={<FormCategoria />} />
             <Route path="/projetos" element={<Projetos />} />

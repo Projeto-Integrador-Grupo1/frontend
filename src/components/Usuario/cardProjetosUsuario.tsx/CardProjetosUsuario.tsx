@@ -3,7 +3,8 @@ import { AuthContext } from "../../../contexts/AuthContext"
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { Button, Card } from "flowbite-react"
-import { Trash } from "@phosphor-icons/react"
+import { ArrowRight, Trash } from "@phosphor-icons/react"
+import imgFotoUsuario from "../../../assets/imgSemFotoUsuario.png"
 
 interface CardProjetosUsuarioProps {
     projeto: Projeto
@@ -34,11 +35,11 @@ function CardProjetosUsuario({ projeto }: CardProjetosUsuarioProps) {
                         {projeto.titulo}
                     </h5>
 
-                    <div className="flex w-ful items-center gap-4">
+                    <div className="flex w-ful items-center gap-4 " style={{}}>
                         <img
                             src={
                                 projeto.usuario?.foto === " " || null
-                                    ? "https://tempodepolitica.com.br/wp-content/uploads/2020/05/sh_ong_111901871.jpg"
+                                    ? imgFotoUsuario
                                     : projeto.usuario?.foto
                             }
                             className="w-8 h-8 rounded-full"
@@ -74,7 +75,11 @@ function CardProjetosUsuario({ projeto }: CardProjetosUsuarioProps) {
                                 <Trash size={20} />
                             </Button>
                         </Link>
+
                     </div>
+                    <Link className="flex justify-center items-center pt-4 font-semibold" to={`/projeto/${projeto.id}`}>Ver meu projeto
+                        <ArrowRight className="-mr-1 mt-1 ml-2 h-4 w-4 " size={20} />
+                    </Link>
                 </Card>
             </div>
         )
