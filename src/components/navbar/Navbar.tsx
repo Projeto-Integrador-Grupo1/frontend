@@ -51,7 +51,7 @@ function Navbar() {
   } else {
     navbarComponent = (
       <div className='w-full bg-indigo-100 text-black flex justify-center py-4'>
-        <div className="container flex justify-between text-lg">
+        <div className="container flex justify-between text-xl">
           <Link to="/" className="text-2xl font-bold uppercase">
             <img
               src={imgLogo}
