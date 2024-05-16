@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { DNA } from 'react-loader-spinner';
 import Projeto from '../../../models/Projeto';
 import { buscar } from '../../../services/Services';
-import CardProjetos from '../cardProjetos/CardProjetos';
 import { Toast, ToastAlert } from '../../../utils/ToastAlert';
+import CardProjetosUsuario from '../cardProjetosUsuario.tsx/CardProjetosUsuario';
 
-function ListaProjetos() {
+function ProjetosUsuario() {
 
     const [projetos, setProjetos] = useState<Projeto[]>([]);
 
@@ -37,9 +37,7 @@ function ListaProjetos() {
 
                 {
                     projetos.map((projeto) => (
-
-                        <CardProjetos key={projeto.id} projeto={projeto} />
-
+                        <CardProjetosUsuario key={projeto.id} projeto={projeto} />
                     ))}
             </div>
         </>
@@ -47,4 +45,4 @@ function ListaProjetos() {
 
 }
 
-export default ListaProjetos;
+export default ProjetosUsuario;

@@ -22,7 +22,7 @@ function Carrossel() {
                 mousewheel={true}
                 keyboard={true}
                 modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                className="mySwiper swiper h-[750px]"
+                className="mySwiper swiper h-[950px]"
             >
 
                 <SwiperSlide className="">
