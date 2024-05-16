@@ -27,6 +27,7 @@ function App() {
         <ToastContainer />
         <BrowserRouter>
           <Navbar />
+          <div className="min-h-[90vh]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -48,6 +49,7 @@ function App() {
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/perfils" element={<NavbarPerfil />} />
           </Routes>
+          </div>
           <Footer />
         </BrowserRouter>
       </AuthProvider>
