@@ -4,7 +4,7 @@ import ProjetoModel from "../../models/Projeto"
 import { Toast, ToastAlert } from "../../utils/ToastAlert"
 import { AuthContext } from "../../contexts/AuthContext"
 import { atualizar, buscar } from "../../services/Services"
-import { DNA } from "react-loader-spinner"
+import { DNA, RotatingLines } from "react-loader-spinner"
 import moment from "moment"
 
 function Projeto() {
@@ -23,7 +23,8 @@ function Projeto() {
     usuario: null,
   })
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [valorDoacao, setValorDoacao] = useState<number>(1)
+  const [disableButton, setdisableButton] = useState<boolean>(false)
+  const [valorDoacao, setValorDoacao] = useState<number>(0)
   const { usuario, handleLogout } = useContext(AuthContext)
   const token = usuario.token
   const { id } = useParams<{ id: string }>()
@@ -47,6 +48,48 @@ function Projeto() {
     setIsLoading(false)
   }
 
+  function diasRestantes(data: string) {
+    let eventdate = moment(data)
+    let todaysdate = moment()
+    return eventdate.diff(todaysdate, "days")
+  }
+
+  async function chamarApi() {
+    try {
+      await atualizar("/projetos", projeto, setProjeto, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      ToastAlert("Doação realizada com sucesso", Toast.Sucess)
+      navigate("/projetos")
+    } catch (error: any) {
+      if (error.toString().includes("403")) {
+        ToastAlert("O token expirou, favor logar novamente", Toast.Error)
+        handleLogout()
+      } else {
+        ToastAlert("Erro ao atualizar o Projeto", Toast.Error)
+      }
+    }
+  }
+
+  async function doar(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    setdisableButton(true)
+
+    if (valorDoacao > 0) {
+      setProjeto({
+        ...projeto,
+        qtdDoacoes: projeto.qtdDoacoes + 1,
+        valorAtual: projeto.valorAtual + valorDoacao,
+      })
+    } else {
+      ToastAlert("Digite um valor maior que 0", Toast.Error)
+      setdisableButton(false)
+    }
+  }
+
   useEffect(() => {
     if (token === "") {
       ToastAlert("Você precisa estar logado", Toast.Info)
@@ -60,48 +103,12 @@ function Projeto() {
     }
   }, [id])
 
-  function diasRestantes(data: string) {
-    let eventdate = moment(data)
-    let todaysdate = moment()
-    return eventdate.diff(todaysdate, "days")
-  }
-
-  function atualizarEstado(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault()
-
-    setProjeto({
-      ...projeto,
-      qtdDoacoes: projeto.qtdDoacoes + 1,
-      valorAtual: projeto.valorAtual + valorDoacao,
-    })
-
-    doar()
-  }
-
-  console.log(projeto)
-
-  async function doar() {
+  useEffect(() => {
     if (valorDoacao > 0) {
-      try {
-        await atualizar("/projetos", projeto, setProjeto, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        ToastAlert("Doação realizada com sucesso", Toast.Sucess)
-        navigate("/projetos")
-      } catch (error: any) {
-        if (error.toString().includes("403")) {
-          ToastAlert("O token expirou, favor logar novamente", Toast.Error)
-          handleLogout()
-        } else {
-          ToastAlert("Erro ao atualizar o Projeto", Toast.Error)
-        }
-      }
-    } else {
-      ToastAlert("Digite um valor maior que 0", Toast.Error)
+      setIsLoading(true)
+      chamarApi()
     }
-  }
+  }, [projeto])
 
   return (
     <>
@@ -142,10 +149,12 @@ function Projeto() {
 
               <div className="border-t py-2 mt-8">
                 <h3 className="text-xl font-bold my-4">Faça uma doação:</h3>
-                <form onSubmit={atualizarEstado} className="flex gap-2">
+
+                <form onSubmit={doar} className="flex gap-2">
                   <label htmlFor="valor">
                     <span>R$ </span>
                     <input
+                      id="valor"
                       type="number"
                       placeholder="Digite um valor"
                       className="border border-slate-700 rounded p-2"
@@ -157,10 +166,21 @@ function Projeto() {
                     />
                   </label>
                   <button
+                    disabled={disableButton}
                     type="submit"
                     className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold flex justify-center items-center p-2"
                   >
-                    Enviar
+                    {disableButton ? (
+                      <RotatingLines
+                        strokeColor="white"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="24"
+                        visible={true}
+                      />
+                    ) : (
+                      "Enviar"
+                    )}
                   </button>
                 </form>
               </div>
