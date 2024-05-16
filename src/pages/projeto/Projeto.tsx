@@ -40,10 +40,8 @@ function Projeto() {
         },
       })
     } catch (error: any) {
-      if (error.toString().includes("403")) {
-        ToastAlert("O token expirou, favor logar novamente", Toast.Info)
-        handleLogout()
-      }
+      ToastAlert("Erro ao buscar projeto", Toast.Error)
+      navigate("/projetos")
     }
     setIsLoading(false)
   }
