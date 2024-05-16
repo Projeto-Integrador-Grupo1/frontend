@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
 import { Toast, ToastAlert } from "../../utils/ToastAlert"
 import imgLogo from "../../assets/img/zerone-logo.png"
-import { Avatar, Dropdown } from "flowbite-react"
+import { Avatar, DarkThemeToggle, Dropdown, Flowbite } from "flowbite-react"
 import NavbarPerfil from "./navbarPerfil/NavbarPerfil"
 
 
@@ -21,16 +21,16 @@ function Navbar() {
 
   if (usuario.token !== "") {
     navbarComponent = (
-      <div className="w-full bg-indigo-100 text-black flex justify-center py-4">
+      <div className="w-full bg-azul-200 text-black flex justify-center py-4">
         <div className="container items-center flex justify-between text-xl">
-          <Link to="/" className="text-2xl font-bold uppercase">
+          <Link to="/home" className="text-2xl font-bold uppercase">
             <img
               src={imgLogo}
-              className="h-10 w-auto  bg-indigo-100"
+              className="h-16 w-auto bg-cinza-100 rounded-xl"
               alt=""
             />
           </Link>
-          <div className="flex gap-4 mr-4">
+          <div className="flex items-center gap-4 mr-4">
             <Link to="/projetos" className="hover:underline">
               Explorar
             </Link>
@@ -43,19 +43,23 @@ function Navbar() {
             <Link to="/sobre" className="hover:underline">
               Quem somos
             </Link>
-            <NavbarPerfil/>
+            <NavbarPerfil />
+
           </div>
         </div>
+        <Flowbite >
+          <DarkThemeToggle className=" hover:bg-transparent" />
+        </Flowbite>
       </div>
     )
   } else {
     navbarComponent = (
-      <div className='w-full bg-indigo-100 text-black flex justify-center py-4'>
-        <div className="container flex justify-between text-xl">
-          <Link to="/" className="text-2xl font-bold uppercase">
+      <div className='w-full bg-azul-200 text-black flex justify-center py-4'>
+        <div className="container flex items-center justify-between text-xl">
+          <Link to="/home" className="text-2xl font-bold uppercase">
             <img
               src={imgLogo}
-              className="h-10 w-auto bg-indigo-100"
+              className=" h-16 w-auto bg-cinza-100 rounded-xl"
               alt=""
             />
           </Link>
@@ -65,6 +69,9 @@ function Navbar() {
             <Link to="/cadastro" className="hover:underline">Cadastre-se</Link>
           </div>
         </div>
+        <Flowbite >
+          <DarkThemeToggle className=" mx-5 hover:bg-transparent" />
+        </Flowbite>
       </div>
     )
   }

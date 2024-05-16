@@ -6,8 +6,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { RotatingLines } from 'react-loader-spinner';
 
 import UsuarioLogin from '../../models/UsuarioLogin';
-
-import './Login.css';
+import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 
 function Login() {
 
@@ -39,10 +38,28 @@ function Login() {
 
   return (
     <>
+        <form className="flex max-w-md flex-col gap-4">
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="email1" value="Your email" />
+            </div>
+            <TextInput id="email1" type="email" placeholder="name@flowbite.com" required />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="password1" value="Your password" />
+            </div>
+            <TextInput id="password1" type="password" required />
+          </div>
+          <div className="flex items-center gap-2">
+            <Checkbox id="remember" />
+            <Label htmlFor="remember">Remember me</Label>
+          </div>
+          <Button type="submit">Submit</Button>
+        </form>
+
       <div className="flex justify-center mx-[20vw] my-[5vh] bg-blue-100 py-[10vh] rounded-2xl font-bold">
-
-
-        <form className="space-y-6 flex justify-center items-center flex-col w-2/3 gap-4" action="#" method="POST" onSubmit={login}>
+        <form className="flex max-w-md flex-col gap-4" action="#" method="POST" onSubmit={login}>
           <div className="">
             <img
               className="h-40"
