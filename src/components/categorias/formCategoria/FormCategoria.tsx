@@ -101,60 +101,63 @@ function FormularioCategoria() {
 
   return (
 
-    <div className="flex justify-center mx-[30vw] shadow-xl dark:shadow-lg shadow-cinza-300 dark:shadow-preto-600 bg-cinza-100 dark:bg-preto-300 py-[10vh] rounded-2xl font-bold">
+    <div className="py-[10vh]">
+
+      <div className="flex justify-center mx-[30vw] shadow-xl dark:shadow-lg shadow-cinza-300 dark:shadow-preto-600 bg-cinza-100 dark:bg-preto-300 py-[10vh] rounded-2xl font-bold">
 
 
-      <form className="flex max-w-md flex-col gap-4" onSubmit={gerarNovoCategoria}>
-        <h1 className="text-4xl text-center my-8 dark:text-cinza-100">
-          {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
-        </h1>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="nomeCategoria"
-              value="Nome da categoria"
+        <form className="flex max-w-md flex-col gap-4" onSubmit={gerarNovoCategoria}>
+          <h1 className="text-4xl text-center my-8 dark:text-cinza-100">
+            {id === undefined ? "Cadastrar Categoria" : "Editar Categoria"}
+          </h1>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="nomeCategoria"
+                value="Nome da categoria"
+              />
+            </div>
+            <TextInput
+              id="nomeCategoria"
+              type="text"
+              placeholder="Nome da Categoria"
+              name="nomeCategoria"
+              value={categoria.nomeCategoria}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
             />
           </div>
-          <TextInput
-            id="nomeCategoria"
-            type="text"
-            placeholder="Nome da Categoria"
-            name="nomeCategoria"
-            value={categoria.nomeCategoria}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            required
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="descricao"
-              value="Descrição"
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="descricao"
+                value="Descrição"
+              />
+            </div>
+            <TextInput
+              id="descricao"
+              type="text"
+              sizing="lg"
+              placeholder="Descrição"
+              name="descricao"
+              value={categoria.descricao}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <TextInput
-            id="descricao"
-            type="text"
-            sizing="lg"
-            placeholder="Descrição"
-            name="descricao"
-            value={categoria.descricao}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-          />
-        </div>
 
-        <Button type="submit" className="bg-rosa-200">
-          {isLoading ? <RotatingLines
-            strokeColor="white"
-            strokeWidth="5"
-            animationDuration="0.75"
-            width="24"
-            visible={true}
-          /> :
-            <span>{id === undefined ? "Cadastrar" : "Editar"}</span>}
-        </Button>
-      </form>
+          <Button type="submit" className="bg-rosa-200">
+            {isLoading ? <RotatingLines
+              strokeColor="white"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="24"
+              visible={true}
+            /> :
+              <span>{id === undefined ? "Cadastrar" : "Editar"}</span>}
+          </Button>
+        </form>
 
+      </div>
     </div>
   )
 }

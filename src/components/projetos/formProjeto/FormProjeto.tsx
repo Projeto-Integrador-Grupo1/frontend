@@ -6,6 +6,7 @@ import Categoria from '../../../models/Categoria';
 import { buscar, atualizar, cadastrar } from '../../../services/Services';
 import { RotatingLines } from 'react-loader-spinner';
 import { Button, Checkbox, Label, Select, TextInput } from 'flowbite-react';
+import { Toast, ToastAlert } from '../../../utils/ToastAlert';
 
 
 function FormularioProjeto() {
@@ -68,7 +69,7 @@ function FormularioProjeto() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+      ToastAlert('Você precisa estar logado', Toast.Warning);
       navigate('/');
     }
   }, [token]);
@@ -100,7 +101,7 @@ function FormularioProjeto() {
   }
 
   function retornar() {
-    navigate('/projetos');
+    navigate('/perfil');
   }
 
   async function cadastrarNovoProjeto(e: ChangeEvent<HTMLFormElement>) {
@@ -116,18 +117,18 @@ function FormularioProjeto() {
           },
         })
 
-        alert('Projeto atualizado com sucesso');
+        ToastAlert('Projeto atualizado com sucesso', Toast.Sucess);
         retornar()
 
       } catch (error: any) {
 
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          ToastAlert('O token expirou, favor logar novamente', Toast.Error)
           handleLogout()
 
         } else {
 
-          alert('Erro ao atualizar o Projeto');
+          ToastAlert('Erro ao atualizar o Projeto', Toast.Error);
         }
       }
     } else {
@@ -140,18 +141,18 @@ function FormularioProjeto() {
           },
         });
 
-        alert('Projeto cadastrado com sucesso');
+        ToastAlert('Projeto cadastrado com sucesso', Toast.Sucess);
         retornar();
 
       } catch (error: any) {
 
         if (error.toString().includes('403')) {
-          alert('O token expirou, favor logar novamente')
+          ToastAlert('O token expirou, favor logar novamente', Toast.Error)
           handleLogout()
 
         } else {
 
-          alert('Erro ao cadastrar o Projeto');
+          ToastAlert('Erro ao cadastrar o Projeto', Toast.Error);
         }
 
       }
@@ -163,134 +164,136 @@ function FormularioProjeto() {
   const carregandoCategoria = categoria.nomeCategoria === '';
 
   return (
-    <div className="flex justify-center mx-[30vw] shadow-xl dark:shadow-lg shadow-cinza-300 dark:shadow-preto-600 bg-cinza-100 dark:bg-preto-300 py-[10vh] rounded-2xl font-bold">
 
-      <form onSubmit={cadastrarNovoProjeto} className="flex max-w-md flex-col gap-4 w-[80%]">
-        <h2 className="text-slate-900 dark:text-cinza-100 my-4 text-center text-5xl">
-          {id !== undefined ? `Editar Projeto` : 'Cadastrar Projeto'}
-        </h2>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="titulo"
-              value="Titulo do projeto"
+      <div className="flex justify-center mx-[30vw] shadow-xl dark:shadow-lg shadow-cinza-300 dark:shadow-preto-600 bg-cinza-100 dark:bg-preto-300 py-[10vh] rounded-2xl font-bold">
+
+        <form onSubmit={cadastrarNovoProjeto} className="flex max-w-md flex-col gap-4 w-[80%]">
+          <h2 className="text-slate-900 dark:text-cinza-100 my-4 text-center text-5xl">
+            {id !== undefined ? `Editar Projeto` : 'Cadastrar Projeto'}
+          </h2>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="titulo"
+                value="Titulo do projeto"
+              />
+            </div>
+            <TextInput
+              id="titulo"
+              type="text"
+              placeholder="Titulo"
+              name="titulo"
+              value={projeto.titulo}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
             />
           </div>
-          <TextInput
-            id="titulo"
-            type="text"
-            placeholder="Titulo"
-            name="titulo"
-            value={projeto.titulo}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            required
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="descricao"
-              value="Descrição do projeto"
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="descricao"
+                value="Descrição do projeto"
+              />
+            </div>
+            <TextInput
+              id="descricao"
+              type="text"
+              placeholder="Descrição"
+              name="descricao"
+              
+              value={projeto.descricao}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
             />
           </div>
-          <TextInput
-            id="descricao"
-            type="text"
-            placeholder="Descrição"
-            name="descricao"
-            value={projeto.descricao}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            required
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="linkMidia"
-              value="Link da Mídia"
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="linkMidia"
+                value="Link da Mídia"
+              />
+            </div>
+            <TextInput
+              id="linkMidia"
+              type="text"
+              placeholder="Link da Mídia"
+              name="linkMidia"
+              value={projeto.linkMidia}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
             />
           </div>
-          <TextInput
-            id="linkMidia"
-            type="text"
-            placeholder="Link da Mídia"
-            name="linkMidia"
-            value={projeto.linkMidia}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            required
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="valorMeta"
-              value="Valor da Meta"
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="valorMeta"
+                value="Valor da Meta"
+              />
+            </div>
+            <TextInput
+              id="valorMeta"
+              type="text"
+              placeholder="Valor da Meta"
+              name="valorMeta"
+              value={projeto.valorMeta}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
             />
           </div>
-          <TextInput
-            id="valorMeta"
-            type="text"
-            placeholder="Valor da Meta"
-            name="valorMeta"
-            value={projeto.valorMeta}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            required
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="dataLimite"
-              value="Data Limite de Investimentos"
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="dataLimite"
+                value="Data Limite de Investimentos"
+              />
+            </div>
+            <TextInput
+              id="dataLimite"
+              type="date"
+              placeholder="Data Limite"
+              name="dataLimite"
+              value={projeto.dataLimite}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
             />
           </div>
-          <TextInput
-            id="dataLimite"
-            type="date"
-            placeholder="Data Limite"
-            name="dataLimite"
-            value={projeto.dataLimite}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-            required
-          />
-        </div>
-        <div>
-          <div className="mb-2 block">
-            <Label
-              htmlFor="categoria"
-              value="Categoria do projeto"
-            />
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="categoria"
+                value="Categoria do projeto"
+              />
+            </div>
+            <Select
+              id="categoria"
+              name="categoria"
+              onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)} required
+            >
+              <option value="" selected disabled>Selecione uma categoria</option>
+              {categorias.map((categoria) => (
+                <>
+                  <option value={categoria.id} >{categoria.nomeCategoria}</option>
+                </>
+              ))}
+            </Select>
           </div>
-          <Select
-            id="categoria"
-            name="categoria"
-            onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)} required
-          >
-            <option value="" selected disabled>Selecione uma categoria</option>
-            {categorias.map((categoria) => (
-              <>
-                <option value={categoria.id} >{categoria.nomeCategoria}</option>
-              </>
-            ))}
-          </Select>
-        </div>
 
 
-        <Button type="submit" disabled={carregandoCategoria} className='bg-rosa-200'>
-          {carregandoCategoria || isLoading ?
+          <Button type="submit" disabled={carregandoCategoria} className='bg-rosa-200'>
+            {carregandoCategoria || isLoading ?
 
-            <RotatingLines
-              strokeColor="white"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="24"
-              visible={true}
-            />
+              <RotatingLines
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="24"
+                visible={true}
+              />
 
-            : id !== undefined ? 'Editar' : 'Cadastrar'}
-        </Button>
-      </form>
-    </div>
+              : id !== undefined ? 'Editar' : 'Cadastrar'}
+          </Button>
+        </form>
+      </div>
   );
 
 }

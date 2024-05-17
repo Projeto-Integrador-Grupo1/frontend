@@ -19,7 +19,7 @@ function ModalProjeto() {
 
             {/* <div className=" dark:text-cinza-100 hover:underline">
             </div> */}
-            <div className="justify-center  ">
+            <div className="justify-center py-14 ">
                 <div className='my-2'>
 
                 <Link to="/perfil" className='hover:underline p-[30vw] dark:text-cinza-100 my-6'>

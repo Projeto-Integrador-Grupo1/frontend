@@ -13,7 +13,7 @@ function Navbar() {
 
   if (usuario.token !== "") {
     navbarComponent = (
-      <div className="w-full relative bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4">
+      <div className="w-full fixed top-0 left-0 right-0 z-50 bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4">
         <div className="container items-center flex justify-between text-xl">
           <Link to="/home" className="text-2xl font-bold uppercase">
             <img

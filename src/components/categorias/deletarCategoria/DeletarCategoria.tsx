@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext"
 import Categoria from "../../../models/Categoria"
 import { buscar, deletar } from "../../../services/Services"
 import { Button, Card, Dropdown } from "flowbite-react"
+import { Toast, ToastAlert } from "../../../utils/ToastAlert"
 
 function DeletarCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria)
@@ -24,7 +25,7 @@ function DeletarCategoria() {
       })
     } catch (error: any) {
       if (error.toString().includes("403")) {
-        alert("O token expirou, favor logar novamente")
+        ToastAlert("O token expirou, favor logar novamente", Toast.Error)
         handleLogout()
       }
     }
@@ -32,7 +33,7 @@ function DeletarCategoria() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado")
+      ToastAlert("Você precisa estar logado", Toast.Warning)
       navigate("/login")
     }
   }, [token])
@@ -55,9 +56,9 @@ function DeletarCategoria() {
         },
       })
 
-      alert("Categoria apagado com sucesso")
+      ToastAlert("Categoria apagada com sucesso", Toast.Sucess)
     } catch (error) {
-      alert("Erro ao apagar o Categoria")
+      ToastAlert("Erro ao apagar o Categoria", Toast.Error)
     }
 
     retornar()

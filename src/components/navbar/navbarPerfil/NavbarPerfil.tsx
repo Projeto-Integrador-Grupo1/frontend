@@ -34,11 +34,6 @@ function NavbarPerfil() {
                     <span className="block text-sm">{usuario.nome}</span>
                     <span className="block truncate text-sm font-medium">{usuario.email}</span>
                 </Dropdown.Header>
-                <Link to="/perfil" className="hover:underline">
-                    <Dropdown.Item>
-                        Perfil
-                    </Dropdown.Item>
-                </Link>
 
                 <Link to="/perfil" className="hover:underline">
                     <Dropdown.Item>
