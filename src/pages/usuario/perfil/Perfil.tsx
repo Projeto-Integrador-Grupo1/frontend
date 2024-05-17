@@ -7,8 +7,7 @@ import { ToastAlert, Toast } from '../../../utils/ToastAlert'
 
 import loginLogo from '../../../assets/planejamento.jpg'
 import imgFotoUsuario from "../../../assets/imgSemFotoUsuario.png"
-import ProjetosUsuario from '../../../components/Usuario/projetosUsuario/ProjetosUsuario'
-
+import ProjetosUsuario from '../../../components/usuario/projetosUsuario/ProjetosUsuario' 
 
 function Perfil() {
     let navigate = useNavigate()
