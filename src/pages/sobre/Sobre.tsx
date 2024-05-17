@@ -139,12 +139,12 @@ function Sobre() {
 
       {/* Valores */}
 
-      <section className=" bg-white px-6 py-16 sm:py-28 lg:px-8 ">
+      <section className="   px-6 py-16 sm:py-28 lg:px-8 ">
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none px-6">
-          <div className="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9 ">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Nossos valores</h2>
+          <div className="text-center text-xl font-semibold leading-8  sm:text-2xl sm:leading-9 ">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-cinza-100 sm:text-4xl">Nossos valores</h2>
             <div className="pt-14 sm:py-16">
-              <ul role="list" className="grid gap-x-16 gap-y-12 sm:grid-cols-3 sm:mx-auto sm:gap-y-16 xl:col-span-2">
+              <ul role="list" className="grid gap-x-16 gap-y-12  sm:grid-cols-3 sm:mx-auto sm:gap-y-16 xl:col-span-2">
                 {valores.map((valor) => (
                   <li >
                     <div className='flex flex-col' >
@@ -154,11 +154,11 @@ function Sobre() {
                           alt=""
                         /> */}
 
-                      <div className="mt-4 flex items-center justify-center space-x-3 gap-4 text-2xl">
-                        <p className=" font-semibold text-gray-900">{valor.name}</p>
+                      <div className="mt-4 flex  items-center justify-center space-x-3 gap-4 text-2xl ">
+                        <p className=" font-semibold text-gray-900 dark:text-cinza-100 ">{valor.name}</p>
                       </div>
-                      <div className="mt-4 flex items-center justify-center space-x-3 gap-4 text-lg">
-                        <p className=" text-gray-900">{valor.description}</p>
+                      <div className="mt-4 flex items-center justify-center space-x-3 gap-4 text-lg ">
+                        <p className=" text-gray-900 dark:text-cinza-100">{valor.description}</p>
                       </div>
                     </div>
 
@@ -172,23 +172,23 @@ function Sobre() {
 
       {/* Problema Social */}
 
-      <div className="bg-blue-100 py-24 sm:py-16">
+      <div className="bg-blue-100 dark:bg-gray-800 py-24 sm:py-16">
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
           <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2 mx-auto max-w-7xl px-6 lg:px-8 pb-12 ">
             <div className="flex flex-col-reverse justify-center items-center mt-[-1rem] ">
-              <p className="text-xl leading-7 text-black-300 flex justify-center items-center">A implementação de projetos sustentáveis requer financiamento adequado.
+              <p className="text-xl leading-7 text-black-300 flex justify-center items-center dark:text-cinza-100">A implementação de projetos sustentáveis requer financiamento adequado.
                 Criar parcerias entre governos, empresas e organizações da sociedade civil são essenciais para mobilizar recursos e investir em iniciativas que beneficiem a todos.
                 O problema social discutido neste projeto será a falta de acesso a financiamentos para iniciativas sociais, culturais, empreendedoras, criativas, dentre outras.
                 Tal proposta engloba  projetos que possuem maiores dificuldades em conseguir financiamento bancário ou aporte financeiro de outras instituições, obtendo assim o apoio da comunidade global.</p>
-              <h3 className="text-3xl font-bold leading-9 tracking-tight text-black pb-10">Qual o problema social que queremos resolver?</h3>
+              <h3 className="text-3xl font-bold leading-9 tracking-tight text-black pb-10 dark:text-cinza-100">Qual o problema social que queremos resolver?</h3>
             </div>
             <div className="flex flex-col-reverse justify-center items-center py-5">
-              <p className="text-xl leading-7 text-black-300">
+              <p className="text-xl leading-7 text-black-300 dark:text-cinza-100">
                 A ODS 17 apoia que tenha uma distribuição mais equitativa de recursos entre países desenvolvidos e em desenvolvimento e a criação de
                 parcerias entre as mais diversas instituições têm um impacto significativo e traz consequências positivas. Ao unir recursos, conhecimentos e habilidades de diferentes entidades,
                 essas parcerias promovem a inovação colaborativa e fortalecem a resiliência das comunidades. Isso resulta em soluções mais eficazes para os desafios ambientais,
                 sociais e econômicos, promovendo o crescimento econômico sustentável, o empoderamento local e o alcance de metas globais de desenvolvimento.</p>
-              <h3 className="text-3xl font-bold leading-9 tracking-tight text-black pb-10">
+              <h3 className="text-3xl font-bold leading-9 tracking-tight text-black pb-10 dark:text-cinza-100">
                 O efeito das parcerias para o desenvolvimento sustentável na sociedade.
               </h3>
             </div>
@@ -202,22 +202,22 @@ function Sobre() {
         <div className="mx-auto grid max-w-7xl gap-x-10 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-2xl">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">Conheça nosso time</h2>
-            <p className="mt-10 text-xl leading-7 text-gray-600">
+            <p className="mt-10 text-xl leading-7 text-gray-600 dark:text-cinza-100">
               "Somos um grupo dinâmico de pessoas apaixonadas pelo que fazemos e dedicadas a entregar os melhores resultados aos nossos clientes".
             </p>
           </div>
-          <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+          <ul role="list" className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2 ">
             {equipe.map((equipe) => (
-              <li key={equipe.name}>
+              <li key={equipe.name} >
                 <div className="flex items-center gap-x-6">
                   <img className="h-28 w-28 rounded-full" src={equipe.imageUrl} alt="" />
                   <div>
                     <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900">{equipe.name}</h3>
-                    <p className="text-base font-semibold leading-6 text-gray-500">{equipe.role}</p>
+                    <p className="text-base font-semibold leading-6 text-gray-500 dark:text-cinza-100">{equipe.role}</p>
                     <li key={equipe.name}>
-                      <div className="flex items-center gap-x-1">
+                      <div className="flex items-center gap-x-1 ">
                         <a href={equipe.linkedin}>
-                          <img className="h-8 w-8" src={imgLinkedin} alt="" />
+                          <img className="h-8 w-8 " src={imgLinkedin} alt="" />
                         </a>
                         <a href={equipe.gitHub}>
                           <img className="h-8 w-8" src={imgGitHub} alt="" />

@@ -10,6 +10,7 @@ import planejamento from "../../assets/planejamento.jpg";
 import porquinho from "../../assets/porquinho.jpg"
 
 import { Carousel } from "flowbite-react";
+import { Link } from 'react-router-dom';
 
 
 
@@ -38,15 +39,27 @@ function Home() {
 
   return (
     <>
-        <div className=" h-[50vh] ">
-          <Carousel slideInterval={5000}>
-            <img src="https://flowbite.com/docs/images/carousel/carousel-1.svg" alt="..." />
-            <img src={porquinho} alt="..." />
-            <img src={planejamento} alt="..." />
-            <img src="https://flowbite.com/docs/images/carousel/carousel-4.svg" alt="..." />
-            <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg" alt="..." />
-          </Carousel>
-        </div>
+      <div className=" h-[50vh] sm:h-64 xl:h-80 2xl:h-[50vh] ">
+        <Carousel slideInterval={5000} pauseOnHover>
+          <div className="items-center bg-azul-300  py-40 px-[10vw]">
+            <h1 className="text-4xl text-center font-bold tracking-tight text-gray-900 sm:text-6xl">
+              Sua ajuda pode contribuir positivamente para o desenvolvimento da
+              sociedade!
+            </h1>
+            <p className="mt-6 text-center text-lg leading-8 text-gray-800 px-60">
+              Junte-se a nós na jornada para trazer inovação e impacto positivo ao mundo!
+
+            </p>
+            <p className='text-center'>
+              Com o seu apoio, podemos transformar ideias em realidade e fazer a diferença nas vidas das pessoas.
+            </p>
+          </div>
+          <img src={porquinho} alt="..." />
+          <img src={planejamento} alt="..." />
+          <img src="https://flowbite.com/docs/images/carousel/carousel-4.svg" alt="..." />
+          <img src="https://flowbite.com/docs/images/carousel/carousel-5.svg" alt="..." />
+        </Carousel>
+      </div>
       <div className="  relative isolate flex items-center flex-col">
 
 

@@ -114,7 +114,7 @@ function Projeto() {
           wrapperClass="dna-wrapper mx-auto"
         />
       ) : (
-        <div className="container mx-auto my-12">
+        <div className="container mx-auto my-12 dark:text-cinza-100">
           <h1 className="font-bold text-3xl mb-4">{projeto.titulo}</h1>
           <div className="flex justify-between gap-16">
             <img
@@ -160,7 +160,7 @@ function Projeto() {
                         />
                       </label>
                       <Button
-                        color="blue"
+                      className="bg-rosa-200"
                         disabled={disableButton}
                         type="submit"
                       >
@@ -180,7 +180,7 @@ function Projeto() {
                   </>
                 ) : (
                   <Link to="/login">
-                    <Button color="success" className="mt-4">
+                    <Button className="mt-4 bg-rosa-200">
                       Apoiar
                     </Button>
                   </Link>
