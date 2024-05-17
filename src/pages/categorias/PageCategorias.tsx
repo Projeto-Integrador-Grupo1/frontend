@@ -10,11 +10,11 @@ function PageCategorias() {
 
                     <div className='flex flex-col font-bold text-3xl mt-14 border-b-2 py-5'>
                         <div className='flex items-center justify-between '>
-                            <h2 className="font-bold text-4xl">
+                            <h2 className="font-bold text-4xl dark:text-cinza-100">
                                 Minhas categorias
                             </h2>
 
-                            <button className=" text-center text-2xl font-semibold text-white bg-green-600 rounded p-2 w-100">
+                            <button className=" text-center text-2xl font-semibold text-white bg-rosa-200 rounded p-2 w-100">
                                 <Link to="/cadastroCategoria">+ Criar categoria</Link>
                             </button>
                         </div>

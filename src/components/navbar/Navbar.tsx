@@ -21,7 +21,7 @@ function Navbar() {
 
   if (usuario.token !== "") {
     navbarComponent = (
-      <div className="w-full bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4">
+      <div className="w-full relative bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4">
         <div className="container items-center flex justify-between text-xl">
           <Link to="/home" className="text-2xl font-bold uppercase">
             <img
@@ -34,15 +34,10 @@ function Navbar() {
             <Link to="/projetos" className="hover:underline">
               Projetos
             </Link>
-<<<<<<< HEAD
             <Link to="/sobre" className="hover:underline">
               Quem somos
             </Link>
             <NavbarPerfil />
-
-=======
-            <NavbarPerfil/>
->>>>>>> e7f777f97f5d9a98f282d06613bad91f96c160ce
           </div>
         </div>
         <Flowbite >
@@ -52,16 +47,17 @@ function Navbar() {
     )
   } else {
     navbarComponent = (
-      <div className='w-full bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4'>
-        <div className="container flex items-center justify-between text-xl">
+
+      <div className='w-full fixed top-0 left-0 right-0 z-50 bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4'>
+        <div className=" container flex items-center justify-between text-xl">
           <Link to="/home" className="text-2xl font-bold uppercase">
             <img
               src={imgLogo}
-              className=" h-16 w-auto bg-cinza-100 rounded-xl"
+              className=" h-16 w-auto mx-20 bg-cinza-100 rounded-xl"
               alt=""
             />
           </Link>
-          <div className='flex gap-4'>
+          <div className='flex mx-20 gap-4'>
             <Link to="/projetos" className="hover:underline">Projetos</Link>
             <Link to="/sobre" className="hover:underline">
               Quem somos

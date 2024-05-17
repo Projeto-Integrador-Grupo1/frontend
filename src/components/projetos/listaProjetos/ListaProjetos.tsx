@@ -74,7 +74,7 @@ function ListaProjetos() {
       ) : (
         <div className="flex gap-12 p-10 w-full">
           <div>
-            <h2 className="font-bold mb-4">Selecione uma categoria</h2>
+            <h2 className="font-bold dark:text-cinza-100 mb-4">Selecione uma categoria</h2>
             <ListGroup className="w-60 h-min">
               {categorias.map((categoria) => (
                 <ListGroup.Item

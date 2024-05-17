@@ -38,7 +38,7 @@ export default {
         200: '#D1D5DB',
         300: '#9CA3AF',
       },
-      'Preto':
+      'preto':
       {
         100: '#404040',
         200: '#39494C',

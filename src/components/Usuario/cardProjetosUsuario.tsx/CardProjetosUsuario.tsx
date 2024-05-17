@@ -45,7 +45,7 @@ function CardProjetosUsuario({ projeto }: CardProjetosUsuarioProps) {
                             className="w-8 h-8 rounded-full"
                             alt=""
                         />
-                        <p className="text-base font-semibold text-slate-500">
+                        <p className="text-base dark:text-cinza-100 font-semibold text-slate-500">
                             {projeto.usuario?.nome}
                         </p>
                     </div>
@@ -77,7 +77,8 @@ function CardProjetosUsuario({ projeto }: CardProjetosUsuarioProps) {
                         </Link>
 
                     </div>
-                    <Link className="flex justify-center items-center pt-4 font-semibold" to={`/projeto/${projeto.id}`}>Ver meu projeto
+                    <Link className="flex justify-center items-center pt-4 font-semibold dark:text-cinza-100" to={`/projeto/${projeto.id}`}>
+                        Ver meu projeto
                         <ArrowRight className="-mr-1 mt-1 ml-2 h-4 w-4 " size={20} />
                     </Link>
                 </Card>
