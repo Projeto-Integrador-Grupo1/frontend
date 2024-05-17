@@ -63,7 +63,7 @@ function CardProjetosUsuario({ projeto }: CardProjetosUsuarioProps) {
 
                         <Link to={`/editarProjeto/${projeto.id}`}>
                             <div >
-                                <Button className="px-20 max-sm:px-14 max-md:px-20 max-lg:px-20 max-xl:px-16 max-2xl:px-14 bg-blue-500">
+                                <Button className="px-20 max-sm:px-14 max-md:px-20 max-lg:px-20 max-xl:px-16 max-2xl:px-14 bg-azul-200">
                                     Editar
                                 </Button>
                             </div>

@@ -50,7 +50,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         </p>
                     </div>
 
-                    <div className="flex justify-between">
+                    <div className="justify-between">
                         <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
                             Investimentos: {projeto.qtdDoacoes}
                         </p>
@@ -106,7 +106,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         </p>
                     </div>
 
-                    <div className="flex justify-between">
+                    <div className="justify-between">
                         <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
                             Investimentos: {projeto.qtdDoacoes}
                         </p>

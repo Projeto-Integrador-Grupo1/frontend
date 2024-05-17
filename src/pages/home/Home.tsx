@@ -71,7 +71,7 @@ function Home() {
 
         <div className=" w-full flex justify-center pt-16">
           <div className="container">
-            <h2 className=" font-bold text-3xl my-6 border-b-2 py-4 px-6 dark: text-cinza-100">
+            <h2 className=" font-bold text-3xl my-6 border-b-2 py-4 px-6 dark:text-cinza-100">
               Projetos em destaque:
             </h2>
             <div className='container py-6 px-6 mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
