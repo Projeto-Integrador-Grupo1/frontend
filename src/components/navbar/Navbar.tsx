@@ -21,7 +21,7 @@ function Navbar() {
 
   if (usuario.token !== "") {
     navbarComponent = (
-      <div className="w-full bg-azul-200 text-black flex justify-center py-4">
+      <div className="w-full bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4">
         <div className="container items-center flex justify-between text-xl">
           <Link to="/home" className="text-2xl font-bold uppercase">
             <img
@@ -48,7 +48,7 @@ function Navbar() {
     )
   } else {
     navbarComponent = (
-      <div className='w-full bg-azul-200 text-black flex justify-center py-4'>
+      <div className='w-full bg-azul-200 dark:bg-preto-400 text-black dark:text-cinza-100 flex justify-center py-4'>
         <div className="container flex items-center justify-between text-xl">
           <Link to="/home" className="text-2xl font-bold uppercase">
             <img
