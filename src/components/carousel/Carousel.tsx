@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import planejamento from "../../assets/planejamento.jpg";
-import porquinho from "../../assets/porquinho.jpg" 
+import porquinho from "../../assets/porquinho.jpg"
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -35,10 +35,12 @@ function Carrossel() {
               sociedade!
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-800 px-60">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
-              nostrum id! Autem velit illum fugit enim inventore rem
-              repellendus, voluptates excepturi! Quis temporibus tempora
-              voluptatum consequuntur neque, unde impedit magni.
+              Junte-se a nós na jornada para trazer inovação e impacto positivo ao mundo!
+
+            </p>
+            <p>
+            Com o seu apoio, podemos transformar ideias em realidade e fazer a diferença nas vidas das pessoas.
+
             </p>
             <div className="mt-20 flex items-center justify-center gap-x-6">
               <Link

@@ -41,7 +41,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="bg-blue-50 w-full flex justify-center pt-24">
+        <div className="bg-blue-50 w-full flex justify-center pt-16">
           <div className="container">
             <h2 className=" font-bold text-3xl my-6 border-b-2 py-4 px-6">
               Projetos em destaque:
@@ -58,7 +58,7 @@ function Home() {
           </div>
         </div>
 
-        <div className=" w-full flex justify-center py-12">
+        <div className=" w-full flex justify-center pt-10 pb-16">
           <div className="container">
             <h2 className="font-bold text-3xl my-4 border-b-2 py-4 px-6 ">
               Projetos mais recentes:
