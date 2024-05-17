@@ -1,20 +1,12 @@
 import { useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
-import { Toast, ToastAlert } from "../../utils/ToastAlert"
 import imgLogo from "../../assets/img/zerone-logo.png"
 import NavbarPerfil from "./navbarPerfil/NavbarPerfil"
 
 
 function Navbar() {
-  const navigate = useNavigate()
-  const { usuario, handleLogout } = useContext(AuthContext)
-
-  function logout() {
-    handleLogout()
-    ToastAlert('Usuário deslogado com sucesso', Toast.Sucess)
-    navigate('/login')
-  }
+  const { usuario } = useContext(AuthContext)
 
   let navbarComponent
 
@@ -33,7 +25,10 @@ function Navbar() {
             <Link to="/projetos" className="hover:underline">
               Projetos
             </Link>
-            <NavbarPerfil/>
+            <Link to="/sobre" className="hover:underline">
+              Quem somos
+            </Link>
+            <NavbarPerfil />
           </div>
         </div>
       </div>

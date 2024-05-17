@@ -14,7 +14,7 @@ const links = [
 
 const valores = [
   {
-    name: 'Transparência:',
+    name: 'Transparência',
     description: 'Agimos com honestidade e transparência em todas as nossas interações, garantindo que os criadores e apoiadores tenham confiança em nossa plataforma.',
     imageUrl: imgLinkedin,
   },

@@ -50,7 +50,7 @@ function DeletarProjeto() {
     }, [id])
 
     function retornar() {
-        navigate("/projetos")
+        navigate("/perfil")
     }
 
     async function deletarProjeto() {

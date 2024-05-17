@@ -24,17 +24,19 @@ function Perfil() {
 
     return (
         <div className='container mx-auto rounded-b-2xl overflow-hidden'>
-            <img className='w-full h-72 object-cover border-b-8 border-white' src={loginLogo} alt="Capa do Perfil" />
+            <div className='w-full h-60 object-cover border-b-8 border-white bg-pink-100'>
+                {/* <img className='w-full h-72 object-cover border-b-8 border-white' src={loginLogo} alt="Capa do Perfil" /> */}
+            </div>
 
             <img src={usuario.foto === " " || null
                 ? imgFotoUsuario
-                : usuario.foto} 
-                alt={`Foto de perfil de ${usuario.nome}`} 
-                className='rounded-full w-52 mx-auto mt-[-8rem] border-8 border-white relative z-10' />
+                : usuario.foto}
+                alt={`Foto de perfil de ${usuario.nome}`}
+                className='rounded-full w-48 mx-auto mt-[-8rem] border-8 border-white relative z-10' />
 
-            <div className="relative mt-[-6rem] h-60 flex flex-col bg-sky-100 text-black text-2xl items-center justify-center rounded-b-2xl">
+            <div className="relative mt-[-6rem] h-64 flex flex-col bg-sky-100 text-black text-2xl items-center justify-center rounded-b-2xl">
                 <div className='flex mt-[5rem] flex-col items-center justify-center'>
-                    <p>{usuario.nome} </p>
+                    <p  className=" text-center font-bold bold text-3xl">{usuario.nome} </p>
                     <p>{usuario.email}</p>
                 </div>
             </div>
