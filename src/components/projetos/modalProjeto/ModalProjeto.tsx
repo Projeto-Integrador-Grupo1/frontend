@@ -17,22 +17,26 @@ function ModalProjeto() {
                 </div>
             </Popup> */}
 
-            <div className='border-slate-900 border flex flex-col rounded overflow-hidden justify-between'>
-                <div className="bg-gray-50 w-full flex justify-center">
+            {/* <div className=" dark:text-cinza-100 hover:underline">
+            </div> */}
+            <div className="justify-center py-14 ">
+                <div className='my-2'>
+
+                <Link to="/perfil" className='hover:underline p-[30vw] dark:text-cinza-100 my-6'>
+                    Voltar
+                </Link>
+                </div>
+
+                <FormularioProjeto />
+            </div>
+            {/* <div className=' flex flex-col rounded overflow-hidden justify-between'>
+                <div className=" w-full flex justify-center">
                     <div className="container">
 
-                        <div className="mx-[20vw] pt-[1vh] hover:underline">
-                            <Link to="/projetos" >
-                                Voltar
-                            </Link>
-                        </div>
 
-                        <div className="justify-center mx-[20vw] my-[5vh] py-[6vh] rounded-2xl bg-white shadow-md">
-                            <FormularioProjeto />
-                        </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     );
 }

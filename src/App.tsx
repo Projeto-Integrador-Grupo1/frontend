@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import "./App.css"
 import Footer from "./components/footer/Footer"
 import Navbar from "./components/navbar/Navbar"
 import Home from "./pages/home/Home"
@@ -19,6 +18,7 @@ import DeletarProjeto from "./components/projetos/deletarProjeto/DeletarProjeto"
 import Projeto from "./pages/projeto/Projeto"
 import Perfil from "./pages/usuario/perfil/Perfil"
 import NavbarPerfil from "./components/navbar/navbarPerfil/NavbarPerfil"
+import PageCategorias from "./pages/categorias/PageCategorias"
 
 function App() {
   return (
@@ -27,13 +27,15 @@ function App() {
         <ToastContainer />
         <BrowserRouter>
           <Navbar />
+          <div className="min-h-[90vh] py-24 bg-cinza-100 dark:bg-gray-700">
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cadastro" element={<Cadastro />} />
             <Route path="/home" element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
-            <Route path="/categorias" element={<ListaCategorias />} />
+            <Route path="/categorias" element={<PageCategorias />} />
             <Route path="/cadastroCategoria" element={<FormCategoria />} />
             <Route path="/editarCategoria/:id" element={<FormCategoria />} />
             <Route path="/projetos" element={<Projetos />} />
@@ -48,6 +50,7 @@ function App() {
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/perfils" element={<NavbarPerfil />} />
           </Routes>
+          </div>
           <Footer />
         </BrowserRouter>
       </AuthProvider>

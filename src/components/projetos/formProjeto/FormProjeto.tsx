@@ -5,265 +5,296 @@ import Projeto from '../../../models/Projeto';
 import Categoria from '../../../models/Categoria';
 import { buscar, atualizar, cadastrar } from '../../../services/Services';
 import { RotatingLines } from 'react-loader-spinner';
+import { Button, Checkbox, Label, Select, TextInput } from 'flowbite-react';
+import { Toast, ToastAlert } from '../../../utils/ToastAlert';
 
 
 function FormularioProjeto() {
 
-    const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
 
-    const { usuario, handleLogout } = useContext(AuthContext);
-    const token = usuario.token;
+  const { usuario, handleLogout } = useContext(AuthContext);
+  const token = usuario.token;
 
-    const [categorias, setCategorias] = useState<Categoria[]>([]);
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
 
-    const [categoria, setCategoria] = useState<Categoria>({
-        id: 0,
-        nomeCategoria: '',
-        descricao: '',
+  const [categoria, setCategoria] = useState<Categoria>({
+    id: 0,
+    nomeCategoria: '',
+    descricao: '',
+  });
+
+  const [projeto, setProjeto] = useState<Projeto>({
+    id: 0,
+    titulo: '',
+    descricao: '',
+    qtdDoacoes: 0,
+    valorAtual: 0,
+    valorMeta: 0,
+    tipoMidia: '',
+    linkMidia: '',
+    dataLimite: '',
+    data: '',
+    categoria: null,
+    usuario: null,
+  });
+
+  async function buscarProjetoPorId(id: string) {
+    await buscar(`/projetos/${id}`, setProjeto, {
+      headers: {
+        Authorization: token,
+      },
     });
+  }
 
-    const [projeto, setProjeto] = useState<Projeto>({
-        id: 0,
-        titulo: '',
-        descricao: '',
-        qtdDoacoes: 0,
-        valorAtual: 0,
-        valorMeta: 0,
-        tipoMidia: '',
-        linkMidia: '',
-        dataLimite: '',
-        data: '',
-        categoria: null,
-        usuario: null,
+  async function buscarCategoriaPorId(id: string) {
+    await buscar(`/categorias/${id}`, setCategoria, {
+      headers: {
+        Authorization: token,
+      },
     });
+  }
 
-    async function buscarProjetoPorId(id: string) {
-        await buscar(`/projetos/${id}`, setProjeto, {
-            headers: {
-                Authorization: token,
-            },
-        });
+  async function buscarCategorias() {
+    await buscar('/categorias/all', setCategorias, {
+      headers: {
+        Authorization: token,
+      },
+    });
+  }
+
+  useEffect(() => {
+    if (token === '') {
+      ToastAlert('Você precisa estar logado', Toast.Warning);
+      navigate('/');
+    }
+  }, [token]);
+
+  useEffect(() => {
+
+    buscarCategorias()
+
+    if (id !== undefined) {
+      buscarProjetoPorId(id)
     }
 
-    async function buscarCategoriaPorId(id: string) {
-        await buscar(`/categorias/${id}`, setCategoria, {
-            headers: {
-                Authorization: token,
-            },
-        });
-    }
+  }, [id])
 
-    async function buscarCategorias() {
-        await buscar('/categorias', setCategorias, {
-            headers: {
-                Authorization: token,
-            },
-        });
-    }
+  useEffect(() => {
+    setProjeto({
+      ...projeto,
+      categoria: categoria,
+    })
+  }, [categoria])
 
-    useEffect(() => {
-        if (token === '') {
-            alert('Você precisa estar logado');
-            navigate('/');
-        }
-    }, [token]);
+  function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+    setProjeto({
+      ...projeto,
+      [e.target.name]: e.target.value,
+      categoria: categoria,
+      usuario: usuario,
+    });
+  }
 
-    useEffect(() => {
+  function retornar() {
+    navigate('/perfil');
+  }
 
-        buscarCategorias()
+  async function cadastrarNovoProjeto(e: ChangeEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setIsLoading(true)
 
-        if (id !== undefined) {
-            buscarProjetoPorId(id)
-        }
+    if (id != undefined) {
+      try {
 
-    }, [id])
-
-    useEffect(() => {
-        setProjeto({
-            ...projeto,
-            categoria: categoria,
+        await atualizar(`/projetos`, projeto, setProjeto, {
+          headers: {
+            Authorization: token,
+          },
         })
-    }, [categoria])
 
-    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setProjeto({                           
-            ...projeto,                       
-            [e.target.name]: e.target.value,  
-            categoria: categoria,   
-            usuario: usuario, 
+        ToastAlert('Projeto atualizado com sucesso', Toast.Sucess);
+        retornar()
+
+      } catch (error: any) {
+
+        if (error.toString().includes('403')) {
+          ToastAlert('O token expirou, favor logar novamente', Toast.Error)
+          handleLogout()
+
+        } else {
+
+          ToastAlert('Erro ao atualizar o Projeto', Toast.Error);
+        }
+      }
+    } else {
+
+      try {
+
+        await cadastrar(`/projetos`, projeto, setProjeto, {
+          headers: {
+            Authorization: token,
+          },
         });
-    }
 
-    function retornar() {
-        navigate('/projetos');
-    }
+        ToastAlert('Projeto cadastrado com sucesso', Toast.Sucess);
+        retornar();
 
-    async function cadastrarNovoProjeto(e: ChangeEvent<HTMLFormElement>) {
-        e.preventDefault() 
-        setIsLoading(true) 
+      } catch (error: any) {
 
-        if (id != undefined) { 
-            try {
+        if (error.toString().includes('403')) {
+          ToastAlert('O token expirou, favor logar novamente', Toast.Error)
+          handleLogout()
 
-                await atualizar(`/projetos`, projeto, setProjeto, {
-                    headers: {
-                        Authorization: token,
-                    },
-                })
+        } else {
 
-                alert('Projeto atualizado com sucesso');
-                retornar()
-
-            } catch (error: any) {
-
-                if (error.toString().includes('403')) {
-                    alert('O token expirou, favor logar novamente')
-                    handleLogout()
-
-                } else {
-
-                    alert('Erro ao atualizar o Projeto');
-                }
-            }
-        } else { 
-
-            try {
-
-                await cadastrar(`/projetos`, projeto, setProjeto, {
-                    headers: {
-                        Authorization: token,
-                    },
-                });
-
-                alert('Projeto cadastrado com sucesso');
-                retornar();
-
-            } catch (error: any) {
-
-                if (error.toString().includes('403')) {
-                    alert('O token expirou, favor logar novamente')
-                    handleLogout()
-
-                } else {
-
-                    alert('Erro ao cadastrar o Projeto');
-                }
-
-            }
+          ToastAlert('Erro ao cadastrar o Projeto', Toast.Error);
         }
 
-        setIsLoading(false)
+      }
     }
 
-    const carregandoCategoria = categoria.nomeCategoria === ''; 
+    setIsLoading(false)
+  }
 
-    return (
-        <div className="container flex flex-col mx-auto items-center">
-            <h1 className="text-3xl text-center mb-10">{id !== undefined ? `Editar projeto ${projeto.titulo}` : 'Cadastrar projeto'}</h1>
+  const carregandoCategoria = categoria.nomeCategoria === '';
 
-            <form onSubmit={cadastrarNovoProjeto} className="flex flex-col w-1/2 gap-4">
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Titulo do projeto</label>
-                    <input
-                        value={projeto.titulo}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        type="text"
-                        placeholder="Titulo"
-                        name="titulo"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                    />
-                </div>
+  return (
 
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="descricao">Descrição do projeto</label>
-                    <input
-                        value={projeto.descricao}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        type="text"
-                        placeholder="Descrição"
-                        name="descricao"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                    />
-                </div>
+      <div className="flex justify-center mx-[30vw] shadow-xl dark:shadow-lg shadow-cinza-300 dark:shadow-preto-600 bg-cinza-100 dark:bg-preto-300 py-[10vh] rounded-2xl font-bold">
 
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="linkMidia">Link da foto do projeto</label>
-                    <input
-                        value={projeto.linkMidia}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        type="text"
-                        placeholder="Link da Mídia"
-                        name="linkMidia"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                    />
-                </div>
+        <form onSubmit={cadastrarNovoProjeto} className="flex max-w-md flex-col gap-4 w-[80%]">
+          <h2 className="text-slate-900 dark:text-cinza-100 my-4 text-center text-5xl">
+            {id !== undefined ? `Editar Projeto` : 'Cadastrar Projeto'}
+          </h2>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="titulo"
+                value="Titulo do projeto"
+              />
+            </div>
+            <TextInput
+              id="titulo"
+              type="text"
+              placeholder="Titulo"
+              name="titulo"
+              value={projeto.titulo}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="descricao"
+                value="Descrição do projeto"
+              />
+            </div>
+            <TextInput
+              id="descricao"
+              type="text"
+              placeholder="Descrição"
+              name="descricao"
+              
+              value={projeto.descricao}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="linkMidia"
+                value="Link da Mídia"
+              />
+            </div>
+            <TextInput
+              id="linkMidia"
+              type="text"
+              placeholder="Link da Mídia"
+              name="linkMidia"
+              value={projeto.linkMidia}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="valorMeta"
+                value="Valor da Meta"
+              />
+            </div>
+            <TextInput
+              id="valorMeta"
+              type="text"
+              placeholder="Valor da Meta"
+              name="valorMeta"
+              value={projeto.valorMeta}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="dataLimite"
+                value="Data Limite de Investimentos"
+              />
+            </div>
+            <TextInput
+              id="dataLimite"
+              type="date"
+              placeholder="Data Limite"
+              name="dataLimite"
+              value={projeto.dataLimite}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              required
+            />
+          </div>
+          <div>
+            <div className="mb-2 block">
+              <Label
+                htmlFor="categoria"
+                value="Categoria do projeto"
+              />
+            </div>
+            <Select
+              id="categoria"
+              name="categoria"
+              onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)} required
+            >
+              <option value="" selected disabled>Selecione uma categoria</option>
+              {categorias.map((categoria) => (
+                <>
+                  <option value={categoria.id} >{categoria.nomeCategoria}</option>
+                </>
+              ))}
+            </Select>
+          </div>
 
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="valorMeta">Meta de investimentos</label>
-                    <input
-                        value={projeto.valorMeta}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        type="number"
-                        placeholder="Valor da meta"
-                        name="valorMeta"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                    />
-                </div>
 
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="dataLimite">Data limite de investimentos</label>
-                    <input
-                        value={projeto.dataLimite}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
-                        type="date"
-                        placeholder="Data"
-                        name="dataLimite"
-                        required
-                        className="border-2 border-slate-700 rounded p-2"
-                    />
-                </div>
-                
-                <div className="flex flex-col gap-2">
-                    <p>Escolha uma categoria do projeto</p>
+          <Button type="submit" disabled={carregandoCategoria} className='bg-rosa-200'>
+            {carregandoCategoria || isLoading ?
 
-                    <select name="categoria" id="categoria" className='border p-2 border-slate-800 rounded' onChange={(e) => buscarCategoriaPorId(e.currentTarget.value)}>
-                        <option value="" selected disabled>Selecione uma categoria</option>
-                        {categorias.map((categoria) => (
-                            <>
-                                <option value={categoria.id} >{categoria.nomeCategoria}</option>
-                            </>
-                        ))}
-                    </select>
-                </div>
+              <RotatingLines
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="24"
+                visible={true}
+              />
 
-                <button
-                    disabled={carregandoCategoria} 
-                    type='submit' className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto py-2 mt-16 flex justify-center'>
-
-                    {carregandoCategoria || isLoading ?
-
-                        <RotatingLines
-                            strokeColor="white"
-                            strokeWidth="5"
-                            animationDuration="0.75"
-                            width="24"
-                            visible={true}
-                        />
-
-                        : id !== undefined ? 'Editar' : 'Cadastrar'}
-
-                </button>
-            </form>
-        </div>
-    );
+              : id !== undefined ? 'Editar' : 'Cadastrar'}
+          </Button>
+        </form>
+      </div>
+  );
 
 }
 

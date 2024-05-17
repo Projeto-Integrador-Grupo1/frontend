@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router"
 import { AuthContext } from "../../../contexts/AuthContext"
 import Categoria from "../../../models/Categoria"
 import { buscar, deletar } from "../../../services/Services"
+import { Button, Card, Dropdown } from "flowbite-react"
+import { Toast, ToastAlert } from "../../../utils/ToastAlert"
 
 function DeletarCategoria() {
   const [categoria, setCategoria] = useState<Categoria>({} as Categoria)
@@ -23,7 +25,7 @@ function DeletarCategoria() {
       })
     } catch (error: any) {
       if (error.toString().includes("403")) {
-        alert("O token expirou, favor logar novamente")
+        ToastAlert("O token expirou, favor logar novamente", Toast.Error)
         handleLogout()
       }
     }
@@ -31,7 +33,7 @@ function DeletarCategoria() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado")
+      ToastAlert("Você precisa estar logado", Toast.Warning)
       navigate("/login")
     }
   }, [token])
@@ -54,44 +56,52 @@ function DeletarCategoria() {
         },
       })
 
-      alert("Categoria apagado com sucesso")
+      ToastAlert("Categoria apagada com sucesso", Toast.Sucess)
     } catch (error) {
-      alert("Erro ao apagar o Categoria")
+      ToastAlert("Erro ao apagar o Categoria", Toast.Error)
     }
 
     retornar()
   }
   return (
-    <div className="container w-1/3 mx-auto">
-      <h1 className="text-4xl text-center my-4">Deletar categoria</h1>
+    <>
 
-      <p className="text-center font-semibold mb-4">
-        Você tem certeza de que deseja apagar o categoria a seguir?
-      </p>
 
-      <div className="border flex flex-col rounded-2xl overflow-hidden justify-between">
-        <header className="py-2 px-6 bg-indigo-600 text-white font-bold text-2xl">
-          {categoria.nomeCategoria}
-        </header>
-        <p className="p-8 text-3xl bg-slate-200 h-full">
-          {categoria.descricao}
-        </p>
-        <div className="flex">
-          <button
-            className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2"
-            onClick={retornar}
-          >
-            Não
-          </button>
-          <button
-            className="w-full text-slate-100 bg-indigo-400 hover:bg-indigo-600 flex items-center justify-center"
-            onClick={deletarCategoria}
-          >
-            Sim
-          </button>
-        </div>
+      <div className="container max-w-[30%] mx-auto">
+        <h1 className="text-xl text-center my-4 dark:text-cinza-100">
+          Deseja apagar esta categoria?
+        </h1>
+
+
+
+        <Card className="mx-16 py-4">
+
+          <div className="flex flex-col items-center ">
+            <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+              {categoria.nomeCategoria}
+            </h5>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              {categoria.descricao}
+            </p>
+            <div className="mt-4 flex space-x-3 lg:mt-6">
+              <Button
+                className="inline-flex items-center border-preto-600 dark:border-cinza-100 rounded-lg bg-cyan-700 px-4 py-2 text-center text-sm font-medium text-preto-600 dark:text-cinza-100 "
+                onClick={retornar}
+              >
+                Não
+              </Button>
+              <Button
+                className="inline-flex bg-red-400 hover:bg-red-600 items-center rounded-lg border  px-4 py-2 text-center text-sm font-medium text-gray-900"
+                onClick={deletarCategoria}
+              >
+                Sim
+              </Button>
+            </div>
+          </div>
+        </Card>
+
       </div>
-    </div>
+    </>
   )
 }
 

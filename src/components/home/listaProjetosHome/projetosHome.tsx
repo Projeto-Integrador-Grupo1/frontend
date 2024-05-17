@@ -9,11 +9,6 @@ function ProjetosHome() {
 
     const [projetos, setProjetos] = useState<Projeto[]>([]);
 
-    const projetosFiltrados = projetos.filter((projetos) => projetos.data );
-
-    console.log(projetosFiltrados
-    );
-    
     const sortedProjects = [...projetos].sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime());
 
     const recentProjects = sortedProjects.slice(0, 4);

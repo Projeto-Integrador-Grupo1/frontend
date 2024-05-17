@@ -3,6 +3,8 @@ import { AuthContext } from "../../../contexts/AuthContext"
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { Button, Card } from "flowbite-react"
+import imgFotoUsuario from "../../../assets/imgSemFotoUsuario.png"
+
 
 interface CardProjetosProps {
     projeto: Projeto
@@ -37,28 +39,28 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         <img
                             src={
                                 projeto.usuario?.foto === " " || null
-                                    ? "https://tempodepolitica.com.br/wp-content/uploads/2020/05/sh_ong_111901871.jpg"
+                                    ? imgFotoUsuario
                                     : projeto.usuario?.foto
                             }
                             className="h-8 w-8 rounded-full"
                             alt=""
                         />
-                        <p className="text-base font-semibold text-slate-500">
+                        <p className="text-base dark:text-cinza-100 font-semibold text-slate-500">
                             {projeto.usuario?.nome}
                         </p>
                     </div>
 
                     <div className="flex justify-between">
                         <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
-                            Apoiadores: {projeto.qtdDoacoes}
+                            Investimentos: {projeto.qtdDoacoes}
                         </p>
                         <p className="font-semibold text-gray-600 dark:text-gray-400 my-0">
                             Início: {dataLocal}
                         </p>
                     </div>
 
-                    <Button className="px-6 bg-green-600 ">
-                        <Link to={`/projeto/${projeto.id}`}>Ver seu projeto</Link>
+                    <Button className="px-6 bg-rosa-200 ">
+                        <Link to={`/projeto/${projeto.id}`}>Ver meu projeto</Link>
 
                         <svg
                             className="-mr-1 mt-1 ml-2 h-4 w-4"
@@ -77,7 +79,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                 </Card>
             </div>
         )
-    }else{
+    } else {
         cardComponent = (
             <div className=" flex flex-col justify-between ">
                 <Card
@@ -93,27 +95,27 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         <img
                             src={
                                 projeto.usuario?.foto === " " || null
-                                    ? "https://tempodepolitica.com.br/wp-content/uploads/2020/05/sh_ong_111901871.jpg"
+                                    ? imgFotoUsuario
                                     : projeto.usuario?.foto
                             }
                             className="h-8 w-8 rounded-full"
                             alt=""
                         />
-                        <p className="text-base font-semibold text-slate-500">
+                        <p className="text-base dark:text-cinza-100 font-semibold text-slate-500">
                             {projeto.usuario?.nome}
                         </p>
                     </div>
 
                     <div className="flex justify-between">
                         <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
-                            Apoiadores: {projeto.qtdDoacoes}
+                            Investimentos: {projeto.qtdDoacoes}
                         </p>
                         <p className="font-semibold text-gray-600 dark:text-gray-400 my-0">
                             Início: {dataLocal}
                         </p>
                     </div>
 
-                    <Button className="px-6 bg-blue-600 ">
+                    <Button className="px-6 bg-rosa-200 ">
                         <Link to={`/projeto/${projeto.id}`}>Conheça este projeto</Link>
 
                         <svg
