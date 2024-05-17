@@ -33,9 +33,6 @@ function Navbar() {
             <Link to="/projetos" className="hover:underline">
               Projetos
             </Link>
-            <Link to="/sobre" className="hover:underline">
-              Quem somos
-            </Link>
             <NavbarPerfil/>
           </div>
         </div>
@@ -54,6 +51,9 @@ function Navbar() {
           </Link>
           <div className='flex gap-4'>
             <Link to="/projetos" className="hover:underline">Projetos</Link>
+            <Link to="/sobre" className="hover:underline">
+              Quem somos
+            </Link>
             <Link to="/login" className="hover:underline">Login</Link>
             <Link to="/cadastro" className="hover:underline">Cadastre-se</Link>
           </div>
