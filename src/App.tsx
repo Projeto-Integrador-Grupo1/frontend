@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import "./App.css"
 import Footer from "./components/footer/Footer"
 import Navbar from "./components/navbar/Navbar"
 import Home from "./pages/home/Home"
@@ -28,7 +27,8 @@ function App() {
         <ToastContainer />
         <BrowserRouter>
           <Navbar />
-          <div className="min-h-[90vh]">
+          <div className="min-h-[85vh] py-16 bg-cinza-100 dark:bg-gray-700">
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

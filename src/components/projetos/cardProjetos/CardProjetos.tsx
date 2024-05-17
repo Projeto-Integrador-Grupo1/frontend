@@ -45,7 +45,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                             className="h-8 w-8 rounded-full"
                             alt=""
                         />
-                        <p className="text-base font-semibold text-slate-500">
+                        <p className="text-base dark:text-cinza-100 font-semibold text-slate-500">
                             {projeto.usuario?.nome}
                         </p>
                     </div>
@@ -59,7 +59,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         </p>
                     </div>
 
-                    <Button className="px-6 bg-green-600 ">
+                    <Button className="px-6 bg-rosa-200 ">
                         <Link to={`/projeto/${projeto.id}`}>Ver meu projeto</Link>
 
                         <svg
@@ -101,7 +101,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                             className="h-8 w-8 rounded-full"
                             alt=""
                         />
-                        <p className="text-base font-semibold text-slate-500">
+                        <p className="text-base dark:text-cinza-100 font-semibold text-slate-500">
                             {projeto.usuario?.nome}
                         </p>
                     </div>
@@ -115,7 +115,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
                         </p>
                     </div>
 
-                    <Button className="px-6 bg-blue-600 ">
+                    <Button className="px-6 bg-rosa-200 ">
                         <Link to={`/projeto/${projeto.id}`}>Conheça este projeto</Link>
 
                         <svg

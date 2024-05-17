@@ -6,8 +6,7 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { RotatingLines } from 'react-loader-spinner';
 
 import UsuarioLogin from '../../models/UsuarioLogin';
-
-import './Login.css';
+import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 
 function Login() {
 
@@ -39,76 +38,61 @@ function Login() {
 
   return (
     <>
-      <div className="flex justify-center mx-[20vw] my-[5vh] bg-blue-100 py-[10vh] rounded-2xl font-bold">
 
-
-        <form className="space-y-6 flex justify-center items-center flex-col w-2/3 gap-4" action="#" method="POST" onSubmit={login}>
-          <div className="">
-            <img
-              className="h-40"
-              src={Logo}
-              alt="Your Company"
-            />
-
-          </div>
-          <h2 className="text-slate-900 text-5xl">
+      <div className="flex justify-center mx-[30vw] shadow-xl dark:shadow-lg shadow-cinza-300 dark:shadow-preto-600 bg-cinza-100 dark:bg-preto-300 py-[10vh] rounded-2xl font-bold">
+        <form className="flex w-[80%] flex-col gap-4" action="#" method="POST" onSubmit={login}>
+          <h2 className="text-slate-900 dark:text-cinza-100 my-4 text-center text-5xl">
             Login
           </h2>
-          <div className="flex flex-col w-full">
-            <label htmlFor="email">
-              Email
-            </label>
-            <input placeholder='email@email.com'
-              id="email"
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="email1" value="E-mail" />
+            </div>
+            <TextInput
+              id="email1"
               name="email"
               type="email"
               autoComplete="email"
+              placeholder="email@email.com"
               required
-              className="border-2 border-slate-700 rounded p-2"
               value={usuarioLogin.email}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-
-          <div className="flex flex-col w-full">
-            <label htmlFor="senha">
-              Senha
-            </label>
-            <input placeholder='senha'
+          <div>
+            <div className="mb-2 block">
+              <Label htmlFor="senha" value="Senha" />
+            </div>
+            <TextInput
               id="senha"
               name="senha"
               type="password"
-              // autoComplete="current-password"
               required
-              className="border-2 border-slate-700 rounded p-2"
               value={usuarioLogin.senha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
-
           </div>
 
-          <div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              {isLoading ? <RotatingLines
-                strokeColor="white"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="24"
-                visible={true}
-              /> :
-                <span>Entrar</span>}
-            </button>
+          <Button type="submit" className='bg-rosa-200 mt-6'>
+            {isLoading ? <RotatingLines
+              strokeColor="white"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="24"
+              visible={true}
+            /> :
+              <span>Entrar</span>}
+          </Button>
 
-            <p className="mt-10 text-center text-sm text-gray-500">
-              Ainda não tem conta?{' '}
-              <Link to="/cadastro" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                Cadastre-se
-              </Link>
-            </p>
-          </div>
+          <hr className="border-cinza-200 w-full" />
+
+
+          <p className=" text-center text-sm text-gray-500">
+            Ainda não tem conta?{' '}
+            <Link to="/cadastro" className="font-semibold leading-6 text-rosa-200 hover:underline">
+              Cadastre-se
+            </Link>
+          </p>
         </form>
       </div>
     </>
