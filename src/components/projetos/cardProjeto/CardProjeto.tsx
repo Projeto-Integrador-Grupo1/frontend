@@ -1,25 +1,32 @@
-import Projeto from "../../../models/Projeto"
-import { AuthContext } from "../../../contexts/AuthContext"
-import { Link } from "react-router-dom"
-import { useContext } from "react"
-import { Button, Card } from "flowbite-react"
-import imgFotoUsuario from "../../../assets/imgSemFotoUsuario.png"
-import ImgProjeto from "../imgProjeto/ImgProjeto"
+import { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Avatar, Button, Card } from "flowbite-react";
 
-interface CardProjetosProps {
-  projeto: Projeto
+import { AuthContext } from "../../../contexts/AuthContext";
+
+import Projeto from "../../../models/Projeto";
+
+
+interface CardProjetoProps {
+  projeto: Projeto;
 }
 
-function CardProjetos({ projeto }: CardProjetosProps) {
-  const { usuario } = useContext(AuthContext)
+function CardProjeto({ projeto }: CardProjetoProps) {
 
-  let dataDoBanco = new Date(projeto.data)
+  const { usuario } = useContext(AuthContext);
+
+  const nomes = projeto.usuario.nome.split(' ');
+  const inicialPrimeiroNome = nomes[0][0];
+  const inicialUltimoNome = nomes.length > 1 ? nomes[nomes.length - 1][0] : '';
+  const iniciais = `${inicialPrimeiroNome}${inicialUltimoNome}`.toUpperCase();
+
+  let dataDoBanco = new Date(projeto.data);
 
   let dataLocal = new Intl.DateTimeFormat(undefined, {
     dateStyle: "medium",
-  }).format(dataDoBanco)
+  }).format(dataDoBanco);
 
-  let cardComponent
+  let cardComponent;
 
   if (usuario.token !== "" && usuario.email === projeto.usuario?.email) {
     cardComponent = (
@@ -27,23 +34,19 @@ function CardProjetos({ projeto }: CardProjetosProps) {
         <Card
           className="max-w-xl card"
           renderImage={() => (
-            <ImgProjeto link={projeto.linkMidia} titulo={projeto.titulo} />
+            <img src={projeto.linkMidia} alt={projeto.titulo} className="object-cover h-64 rounded-t-lg" />
           )}
         >
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 lg:truncate dark:text-white" title={projeto.titulo}>
             {projeto.titulo}
           </h5>
 
           <div className="flex w-full items-center gap-4">
-            <img
-              src={
-                projeto.usuario?.foto === " " || null
-                  ? imgFotoUsuario
-                  : projeto.usuario?.foto
-              }
-              className="h-8 w-8 rounded-full"
-              alt=""
-            />
+            {projeto.usuario?.foto && projeto.usuario?.foto.trim() !== '' ?
+              <Avatar img={projeto.usuario?.foto} rounded /> :
+              <Avatar placeholderInitials={iniciais} rounded />
+            }
+
             <p className="text-base dark:text-cinza-100 font-semibold text-slate-500">
               {projeto.usuario?.nome}
             </p>
@@ -53,6 +56,7 @@ function CardProjetos({ projeto }: CardProjetosProps) {
             <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
               Investimentos: {projeto.qtdDoacoes}
             </p>
+
             <p className="font-semibold text-gray-600 dark:text-gray-400 my-0">
               Início: {dataLocal}
             </p>
@@ -77,39 +81,36 @@ function CardProjetos({ projeto }: CardProjetosProps) {
         </Card>
       </div>
     )
+
   } else {
     cardComponent = (
       <div className=" flex flex-col justify-between ">
         <Card
           className="max-w-xl"
           renderImage={() => (
-            <ImgProjeto link={projeto.linkMidia} titulo={projeto.titulo} />
+            <img src={projeto.linkMidia} alt={projeto.titulo} className="object-cover h-64 rounded-t-lg" />
           )}
         >
-          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className=" text-xl lg:text-2xl font-bold tracking-tight text-gray-900 lg:truncate dark:text-white" title={projeto.titulo}>
             {projeto.titulo}
           </h5>
 
           <div className="flex w-full items-center gap-4">
-            <img
-              src={
-                projeto.usuario?.foto === " " || null
-                  ? imgFotoUsuario
-                  : projeto.usuario?.foto
-              }
-              className="h-8 w-8 rounded-full"
-              alt=""
-            />
+            {projeto.usuario?.foto && projeto.usuario?.foto.trim() !== '' ?
+              <Avatar img={projeto.usuario?.foto} rounded /> :
+              <Avatar placeholderInitials={iniciais} rounded />
+            }
+
             <p className="text-base dark:text-cinza-100 font-semibold text-slate-500">
               {projeto.usuario?.nome}
             </p>
           </div>
 
           <div className="justify-between">
-            <p className="font-semibold text-gray-600 dark:text-gray-400 py-0">
+            <p className="font-semibold text-gray-600 text-sm dark:text-gray-400 py-0">
               Investimentos: {projeto.qtdDoacoes}
             </p>
-            <p className="font-semibold text-gray-600 dark:text-gray-400 my-0">
+            <p className="font-semibold text-gray-600 text-sm dark:text-gray-400 my-0">
               Início: {dataLocal}
             </p>
           </div>
@@ -135,7 +136,11 @@ function CardProjetos({ projeto }: CardProjetosProps) {
     )
   }
 
-  return <>{cardComponent}</>
+  return (
+    <>
+      {cardComponent}
+    </>
+  )
 }
 
-export default CardProjetos
+export default CardProjeto;
