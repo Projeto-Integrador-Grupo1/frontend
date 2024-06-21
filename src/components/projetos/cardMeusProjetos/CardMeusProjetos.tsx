@@ -38,7 +38,7 @@ function CardMeusProjetos({ projeto }: CardMeusProjetosProps) {
             <img src={projeto.linkMidia} alt={projeto.titulo} className="object-cover h-64 rounded-t-lg" />
           )}
         >
-          <h5 className=" text-xl lg:text-2xl font-bold tracking-tight lg:truncate text-gray-900 dark:text-white">
+          <h5 className=" text-xl lg:text-2xl font-bold tracking-tight lg:truncate text-gray-900 dark:text-white" title={projeto.titulo}>
             {projeto.titulo}
           </h5>
 
