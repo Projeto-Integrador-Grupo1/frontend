@@ -1,24 +1,24 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Footer from "./components/footer/Footer"
-import Navbar from "./components/navbar/Navbar"
+import FooterComponent from "./components/footerComponent/FooterComponent"
+import NavbarComponent from "./components/navbarComponent/NavbarComponent"
 import Home from "./pages/home/Home"
 import Sobre from "./pages/sobre/Sobre"
 import Login from "./pages/login/Login"
 import Cadastro from "./pages/cadastro/Cadastro"
 import Projetos from "./pages/projetos/Projetos"
 import { AuthProvider } from "./contexts/AuthContext"
-import ListaCategorias from "./components/categorias/listaCategorias/ListaCategorias"
 import FormCategoria from "./components/categorias/formCategoria/FormCategoria"
 import DeletarCategoria from "./components/categorias/deletarCategoria/DeletarCategoria"
 
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
-import ModalProjeto from "./components/projetos/modalProjeto/ModalProjeto"
 import DeletarProjeto from "./components/projetos/deletarProjeto/DeletarProjeto"
 import Projeto from "./pages/projeto/Projeto"
+import MeusProjetos from "./pages/usuario/meusProjetos/MeusProjetos"
+import Categorias from "./pages/categorias/Categorias"
+import FormProjeto from "./components/projetos/formProjeto/FormProjeto"
+import EditarUsuario from "./pages/usuario/editarUsuario/EditarUsuario"
 import Perfil from "./pages/usuario/perfil/Perfil"
-import NavbarPerfil from "./components/navbar/navbarPerfil/NavbarPerfil"
-import PageCategorias from "./pages/categorias/PageCategorias"
 
 function App() {
   return (
@@ -26,32 +26,30 @@ function App() {
       <AuthProvider>
         <ToastContainer />
         <BrowserRouter>
-          <Navbar />
+          <NavbarComponent />
           <div className="min-h-[90vh] py-24 bg-cinza-100 dark:bg-gray-700">
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/sobre" element={<Sobre />} />
-            <Route path="/categorias" element={<PageCategorias />} />
-            <Route path="/cadastroCategoria" element={<FormCategoria />} />
-            <Route path="/editarCategoria/:id" element={<FormCategoria />} />
-            <Route path="/projetos" element={<Projetos />} />
-            <Route path="/cadastrarProjeto" element={<ModalProjeto />} />
-            <Route path="/editarProjeto/:id" element={<ModalProjeto />} />
-            <Route path="/deletarProjeto/:id" element={<DeletarProjeto />} />
-            <Route
-              path="/deletarCategoria/:id"
-              element={<DeletarCategoria />}
-            />
-            <Route path="/projeto/:id" element={<Projeto />} />
-            <Route path="/perfil" element={<Perfil />} />
-            <Route path="/perfils" element={<NavbarPerfil />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/sobre" element={<Sobre />} />
+              <Route path="/categorias" element={<Categorias />} />
+              <Route path="/cadastroCategoria" element={<FormCategoria />} />
+              <Route path="/editarCategoria/:id" element={<FormCategoria />} />
+              <Route path="/deletarCategoria/:id" element={<DeletarCategoria />} />
+              <Route path="/projetos" element={<Projetos />} />
+              <Route path="/cadastrarProjeto" element={<FormProjeto />} />
+              <Route path="/editarProjeto/:id" element={<FormProjeto />} />
+              <Route path="/deletarProjeto/:id" element={<DeletarProjeto />} />
+              <Route path="/projeto/:id" element={<Projeto />} />
+              <Route path="/meusProjetos" element={<MeusProjetos />} />
+              <Route path="/perfil" element={<Perfil />} />
+              <Route path="/atualizarUsuario/:id" element={<EditarUsuario />} />
+            </Routes>
           </div>
-          <Footer />
+          <FooterComponent />
         </BrowserRouter>
       </AuthProvider>
     </>
