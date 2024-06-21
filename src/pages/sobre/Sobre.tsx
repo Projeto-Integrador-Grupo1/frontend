@@ -1,12 +1,12 @@
-import imgAlan from '../../assets/alan.jpg';
-import imgAlexia from '../../assets/alexia.jpg';
-import imgErick from '../../assets/erick.jpg';
-import imgKetlyn from '../../assets/ketlyn.jpg';
-import imgValdeniza from '../../assets/valdeniza.jpg';
-import imgVinicius from '../../assets/vinicius.jpg';
-import imgGitHub from '../../assets/github.png';
-import imgLinkedin from '../../assets/linkedin.png';
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
+import imgAlan from '../../assets/img/equipe/alan.jpg';
+import imgAlexia from '../../assets/img/equipe/alexia.jpg';
+import imgErick from '../../assets/img/equipe/erick.jpg';
+import imgKetlyn from '../../assets/img/equipe/ketlyn.jpg';
+import imgValdeniza from '../../assets/img/equipe/valdeniza.jpg';
+import imgVinicius from '../../assets/img/equipe/vinicius.jpg';
 
 const links = [
   { name: 'Projetos', href: '#' },
@@ -16,17 +16,14 @@ const valores = [
   {
     name: 'Transparência',
     description: 'Agimos com honestidade e transparência em todas as nossas interações, garantindo que os criadores e apoiadores tenham confiança em nossa plataforma.',
-    imageUrl: imgLinkedin,
   },
   {
     name: 'Inovação',
     description: 'Buscamos constantemente novas formas de melhorar e aprimorar nossa plataforma para atender às necessidades em constante evolução.',
-    imageUrl: imgLinkedin,
   },
   {
     name: 'Sustentabilidade',
     description: 'Operamos de forma sustentável, considerando o impacto ambiental e social das operações e incentivando práticas responsáveis entre os usuários.',
-    imageUrl: imgLinkedin,
   }
 ]
 
@@ -201,7 +198,7 @@ function Sobre() {
       <div className="bg-white-400 py-24 sm:py-26">
         <div className="mx-auto grid max-w-7xl gap-x-10 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-2xl">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">Conheça nosso time</h2>
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-cinza-100 sm:text-4xl">Conheça nosso time</h2>
             <p className="mt-10 text-xl leading-7 text-gray-600 dark:text-cinza-100">
               "Somos um grupo dinâmico de pessoas apaixonadas pelo que fazemos e dedicadas a entregar os melhores resultados aos nossos clientes".
             </p>
@@ -212,15 +209,15 @@ function Sobre() {
                 <div className="flex items-center gap-x-6">
                   <img className="h-28 w-28 rounded-full" src={equipe.imageUrl} alt="" />
                   <div>
-                    <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900">{equipe.name}</h3>
-                    <p className="text-base font-semibold leading-6 text-gray-500 dark:text-cinza-100">{equipe.role}</p>
+                    <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900 dark:text-cinza-100">{equipe.name}</h3>
+                    <p className="text-base font-semibold leading-6 text-gray-500 dark:text-cinza-300">{equipe.role}</p>
                     <li key={equipe.name}>
-                      <div className="flex items-center gap-x-1 ">
-                        <a href={equipe.linkedin}>
-                          <img className="h-8 w-8 " src={imgLinkedin} alt="" />
+                      <div className="flex items-center  gap-x-1 ">
+                        <a href={equipe.linkedin} target='blank'>
+                          <FaLinkedin className='text-preto-100 dark:text-cinza-300' size={26} />
                         </a>
-                        <a href={equipe.gitHub}>
-                          <img className="h-8 w-8" src={imgGitHub} alt="" />
+                        <a href={equipe.gitHub} target='blank'>
+                          <FaGithub className='text-preto-100 dark:text-cinza-300' size={26} />
                         </a>
                       </div>
                     </li>
