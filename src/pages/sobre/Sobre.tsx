@@ -8,10 +8,6 @@ import imgKetlyn from '../../assets/img/equipe/ketlyn.jpg';
 import imgValdeniza from '../../assets/img/equipe/valdeniza.jpg';
 import imgVinicius from '../../assets/img/equipe/vinicius.jpg';
 
-const links = [
-  { name: 'Projetos', href: '#' },
-]
-
 const valores = [
   {
     name: 'Transparência',
@@ -121,16 +117,6 @@ function Sobre() {
             </p>
 
           </div>
-          <div className="mx-auto pt-16 sm:pt-12 max-w-2xl lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-xl sm:text-xl font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-              {links.map((link) => (
-                <a key={link.name} href={link.href}>
-                  {link.name} <span aria-hidden="true">&rarr;</span>
-                </a>
-              ))}
-            </div>
-
-          </div>
         </div>
       </div>
 
@@ -145,11 +131,7 @@ function Sobre() {
                 {valores.map((valor) => (
                   <li >
                     <div className='flex flex-col' >
-                      {/* <img
-                          className="mx-auto h-10 w-10 rounded-full"
-                          src={valor.imageUrl}
-                          alt=""
-                        /> */}
+
 
                       <div className="mt-4 flex  items-center justify-center space-x-3 gap-4 text-2xl ">
                         <p className=" font-semibold text-gray-900 dark:text-cinza-100 ">{valor.name}</p>
