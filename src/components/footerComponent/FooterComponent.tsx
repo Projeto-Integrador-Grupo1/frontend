@@ -51,6 +51,8 @@ function FooterComponent() {
                   <Link to="/sobre#problema" className="hover:underline cursor-pointer">Problema Social</Link>
 
                   <Link to="/sobre#equipe" className="hover:underline cursor-pointer">Nosso Time</Link>
+                  <Link to="/tutoriais" className="hover:underline cursor-pointer">Perguntas Frequentes</Link>
+
                   <Link to='/erros' className="hover:underline">Reportar Erro</Link>
                 </FooterLinkGroup>
               </div>
