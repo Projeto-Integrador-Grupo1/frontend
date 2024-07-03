@@ -40,7 +40,7 @@ function FormCategoria() {
           },
         })
 
-        ToastAlert('Categoria atualizado com sucesso', Toast.Sucess)
+        ToastAlert('Categoria atualizada com sucesso', Toast.Sucess)
         retornar()
 
       } catch (error: any) {
@@ -49,7 +49,7 @@ function FormCategoria() {
           handleLogout();
 
         } else {
-          ToastAlert('Erro ao atualizar o Categoria', Toast.Warning);
+          ToastAlert('Erro ao atualizar a Categoria', Toast.Warning);
         }
 
         setIsLoading(false);
@@ -62,7 +62,7 @@ function FormCategoria() {
           },
         })
 
-        ToastAlert("Categoria cadastrado com sucesso", Toast.Sucess);
+        ToastAlert("Categoria cadastrada com sucesso", Toast.Sucess);
       } catch (error: any) {
 
         if (error.toString().includes("403")) {
@@ -70,7 +70,7 @@ function FormCategoria() {
           handleLogout();
 
         } else {
-          ToastAlert("Erro ao cadastrado o Categoria", Toast.Warning);
+          ToastAlert("Erro ao cadastrado a Categoria", Toast.Warning);
         }
 
         setIsLoading(false);
@@ -109,7 +109,7 @@ function FormCategoria() {
 
       <div className="justify-center lg:py-14">
         <div className='my-2'>
-          <Link to="/categorias" className='hover:underline p-[10vw] lg:p-[30vw] dark:text-cinza-100 my-6'>
+          <Link to="/categorias" className='hover:underline m-[10vw] lg:m-[30vw] dark:text-cinza-100 my-6'>
             Voltar
           </Link>
         </div>

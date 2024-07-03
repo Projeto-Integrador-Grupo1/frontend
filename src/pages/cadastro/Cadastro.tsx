@@ -124,7 +124,6 @@ function Cadastro() {
                 type="foto"
                 autoComplete="foto"
                 placeholder="foto"
-                required
                 value={usuario.foto}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   atualizarEstado(e)

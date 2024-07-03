@@ -44,7 +44,7 @@ function DeletarCategoria() {
 
       ToastAlert("Categoria apagada com sucesso", Toast.Sucess);
     } catch (error) {
-      ToastAlert("Erro ao apagar o Categoria", Toast.Error);
+      ToastAlert("Erro ao apagar a Categoria", Toast.Error);
     }
 
     retornar();
