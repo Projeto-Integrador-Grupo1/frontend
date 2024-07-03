@@ -46,46 +46,48 @@ function Categorias() {
   }, [categorias.length])
 
   return (
-    <div className='container mx-auto my-4 px-6 rounded-2xl  overflow-hidden  '>
-      <div className=" w-full flex flex-col justify-center">
-        <div className="container">
-          <div className='flex flex-col font-bold text-3xl mt-14 border-b-2 py-5'>
-            <div className='flex items-center justify-between '>
-              <h2 className="font-bold text-xl lg:text-4xl dark:text-cinza-100">
-                Minhas categorias
-              </h2>
+    <>
+      <div className='container mx-auto rounded-b-2xl pb-24'>
+        <div className=" w-full flex flex-col justify-center px-6">
+          <div className="container">
+            <div className='flex flex-col font-bold text-3xl mt-14 border-b-2 py-5'>
+              <div className='flex items-center justify-between '>
+                <h2 className="font-bold text-xl lg:text-4xl dark:text-cinza-100">
+                  Minhas categorias
+                </h2>
 
-              <button className=" text-center text-xl lg:text-2xl font-semibold text-white bg-rosa-200 rounded p-2 w-100">
-                <Link to="/cadastroCategoria">+ Criar categoria</Link>
-              </button>
+                <button className=" text-center text-xl lg:text-2xl font-semibold text-white bg-rosa-200 rounded p-2 w-100">
+                  <Link to="/cadastroCategoria">+ Criar categoria</Link>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="my-12">
-          {categorias.length === 0 && (
-            <DNA
-              visible={true}
-              height="200"
-              width="200"
-              ariaLabel="dna-loading"
-              wrapperStyle={{}}
-              wrapperClass="dna-wrapper mx-auto"
-            />
-          )}
+          <div className="my-12">
+            {categorias.length === 0 && (
+              <DNA
+                visible={true}
+                height="200"
+                width="200"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper mx-auto"
+              />
+            )}
 
-          <div className="flex justify-center w-full my-4">
-            <div className="container flex flex-col">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {categoriasEmOrdem.map((categoria) => (
-                  <CardCategoria key={categoria.id} categoria={categoria} />
-                ))}
+            <div className="flex justify-center w-full my-4">
+              <div className="container flex flex-col">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {categoriasEmOrdem.map((categoria) => (
+                    <CardCategoria key={categoria.id} categoria={categoria} />
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div >
+      </div >
+    </>
   )
 }
 

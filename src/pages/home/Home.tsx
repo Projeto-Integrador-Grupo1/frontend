@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Carousel } from "flowbite-react";
+import { Banner, BannerCollapseButton, Button, Carousel } from "flowbite-react";
 
 import { ToastAlert, Toast } from '../../utils/ToastAlert';
 import { buscar } from '../../services/Services';
@@ -9,6 +9,7 @@ import CardProjeto from '../../components/projetos/cardProjeto/CardProjeto';
 import planejamento from "../../assets/img/carousel/planejamento.jpg";
 import porquinho from "../../assets/img/carousel/porquinho.jpg"
 import financiamento from "../../assets/img/carousel/financiamento.jpg"
+import { DNA } from 'react-loader-spinner';
 
 function Home() {
 
@@ -61,12 +62,25 @@ function Home() {
 
       <div className="  relative isolate flex items-center flex-col">
         <div className=" w-full flex justify-center pt-16">
+        </div>
+
+        <div className=" w-full flex justify-center pt-16">
           <div className="container">
             <h2 className=" font-bold text-3xl my-6 border-b-2 py-4 px-6 dark:text-cinza-100">
               Projetos em destaque:
             </h2>
 
             <div className='container py-6 px-6 mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+              {projetosDestaque.length === 0 && (
+                <DNA
+                  visible={true}
+                  height="200"
+                  width="200"
+                  ariaLabel="dna-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="dna-wrapper mx-auto"
+                />
+              )}
               {projetosDestaque.map((projeto) => (
                 <div >
                   <div>
@@ -85,6 +99,17 @@ function Home() {
             </h2>
 
             <div className='container py-8 px-6 mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+
+              {projetosRecentes.length === 0 && (
+                <DNA
+                  visible={true}
+                  height="200"
+                  width="200"
+                  ariaLabel="dna-loading"
+                  wrapperStyle={{}}
+                  wrapperClass="dna-wrapper mx-auto"
+                />
+              )}
               {projetosRecentes.map((projeto) => (
                 <div >
                   <div>
@@ -96,7 +121,27 @@ function Home() {
 
           </div>
         </div>
+
+        <div className=" w-full flex justify-center pt-16">
+          <div className="container">
+            <h2 className=" font-bold text-3xl my-6 border-b-2 py-4 px-6 dark:text-cinza-100">
+              Assista nosso comercial:
+            </h2>
+          </div>
+        </div>
+        <iframe
+          src="https://www.youtube.com/embed/GTmqTa_R6q8"
+          title="Zerone Comercial"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className='w-[70vw] h-[30vh] lg:h-[30vh] xl:h-[73vh]'
+        >
+
+        </iframe>
       </div>
+
+
     </>
   )
 }

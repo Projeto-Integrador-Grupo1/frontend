@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { Avatar } from 'flowbite-react';
+import { Accordion, AccordionContent, AccordionPanel, AccordionTitle, Avatar } from 'flowbite-react';
 import { Pencil } from '@phosphor-icons/react';
 
 import { AuthContext } from '../../../contexts/AuthContext';
@@ -11,13 +11,14 @@ function Perfil() {
   const navigate = useNavigate();
 
   const { usuario } = useContext(AuthContext);
+  const token = usuario.token;
 
   useEffect(() => {
-    if (usuario.token === "") {
+    if (token === "") {
       ToastAlert('Você precisa estar logado', Toast.Info);
       navigate("/login");
     }
-  }, [usuario.token])
+  }, [token])
 
   return (
     <>
@@ -31,7 +32,7 @@ function Perfil() {
                 </h2>
 
                 <button className=" text-center text-xl lg:text-2xl font-semibold text-white bg-rosa-200 rounded p-2  w-100">
-                  <Link to={`/atualizarUsuario/${usuario.id}`}  >
+                  <Link to={`/editarUsuario/${usuario.id}`}  >
                     <div className='flex items-center gap-3'>
                       Editar Perfil
                       <Pencil size={24} />
@@ -43,25 +44,52 @@ function Perfil() {
           </div>
         </div>
 
-        <div className='my-10 mx-16 flex justify-start'>
+        <div className=''>
 
-          {usuario.foto && usuario.foto.trim() !== '' ?
-            <Avatar img={usuario.foto} size="xl" rounded>
+          <div className='my-10 mx-16 lg:flex justify-start items-center'>
 
-              <div className="space-y-1 mx-6 font-bold dark:text-white">
-                <div className='text-2xl'>{usuario.nome}</div>
-                <div className="text-xl text-gray-500 dark:text-gray-400">{usuario.email}</div>
-              </div>
-            </Avatar> :
-            <Avatar className='' placeholderInitials={usuario.nome} size="xl" rounded>
+            {usuario.foto && usuario.foto.trim() !== '' ?
+              <Avatar img={usuario.foto} size="lg" rounded className='pb-5' /> :
+              <Avatar className='pb-5' placeholderInitials={usuario.nome} size="xl" rounded />
+            }
 
-              <div className="space-y-1 mx-6 font-bold dark:text-white">
-                <div className='text-2xl'>{usuario.nome}</div>
-                <div className="text-xl text-gray-500 dark:text-gray-400">{usuario.email}</div>
-              </div>
-            </Avatar>
-          }
+            <div className="space-y-1 mx-6 font-bold text-center lg:text-left dark:text-white">
+              <div className='text-2xl'>{usuario.nome}</div>
+              <div className="text-xl text-gray-500 dark:text-gray-400">{usuario.email}</div>
+            </div>
+          </div>
 
+          <div className='my-10 mx-16 '>
+            <Accordion collapseAll>
+              <AccordionPanel>
+                <AccordionTitle>Documentos Pessoais</AccordionTitle>
+                <AccordionContent>
+                  <p className="mb-2 text-gray-500 dark:text-gray-400">
+                    Sessão em manutenção
+                  </p>
+
+                </AccordionContent>
+              </AccordionPanel>
+              <AccordionPanel>
+                <AccordionTitle>Conta Bancária</AccordionTitle>
+                <AccordionContent>
+                  <p className="mb-2 text-gray-500 dark:text-gray-400">
+                    Sessão em manutenção
+                  </p>
+                </AccordionContent>
+              </AccordionPanel>
+              <AccordionPanel>
+                <AccordionTitle>Endereço</AccordionTitle>
+                <AccordionContent>
+                  <p className="mb-2 text-gray-500 dark:text-gray-400">
+                    Sessão em manutenção
+                  </p>
+
+                </AccordionContent>
+              </AccordionPanel>
+
+            </Accordion>
+          </div>
         </div>
 
 

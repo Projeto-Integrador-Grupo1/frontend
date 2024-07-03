@@ -19,6 +19,8 @@ import Categorias from "./pages/categorias/Categorias"
 import FormProjeto from "./components/projetos/formProjeto/FormProjeto"
 import EditarUsuario from "./pages/usuario/editarUsuario/EditarUsuario"
 import Perfil from "./pages/usuario/perfil/Perfil"
+import Admin from "./pages/admin/Admin"
+import Erros from "./pages/erros/Erros"
 
 function App() {
   return (
@@ -46,7 +48,10 @@ function App() {
               <Route path="/projeto/:id" element={<Projeto />} />
               <Route path="/meusProjetos" element={<MeusProjetos />} />
               <Route path="/perfil" element={<Perfil />} />
-              <Route path="/atualizarUsuario/:id" element={<EditarUsuario />} />
+              <Route path="/perfil/:id" element={<Perfil />} />
+              <Route path="/editarUsuario/:id" element={<EditarUsuario />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/erros" element={<Erros />} />
             </Routes>
           </div>
           <FooterComponent />

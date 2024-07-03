@@ -10,11 +10,10 @@ import { Toast, ToastAlert } from "../../../utils/ToastAlert";
 import Usuario from "../../../models/Usuario";
 
 function EditarUsuario() {
+  const navigate = useNavigate();
 
   const [perfil, setPerfil] = useState<Usuario>({} as Usuario);
   const [isLoading, setIsLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const { id } = useParams<{ id: string }>();
 
@@ -22,7 +21,9 @@ function EditarUsuario() {
   const token = usuario.token;
 
   async function buscarPorId(id: string) {
-    await buscar(`/usuarios/${id}`, setPerfil, {
+    await buscar(`/usuarios/${id}`, (data) => {
+      setPerfil({ ...data, senha: '' });
+    }, {
       headers: {
         Authorization: token,
       },
@@ -87,11 +88,12 @@ function EditarUsuario() {
     }
   }, [token])
 
+
   return (
     <>
       <div className="justify-center lg:py-14">
         <div className='my-2'>
-          <Link to="/perfil" className='hover:underline p-[10vw] lg:p-[30vw] dark:text-cinza-100 my-6'>
+          <Link to="/perfil" className='hover:underline m-[10vw] lg:m-[30vw] dark:text-cinza-100 my-6'>
             Voltar
           </Link>
         </div>
@@ -150,7 +152,6 @@ function EditarUsuario() {
                 type="foto"
                 autoComplete="foto"
                 placeholder="foto"
-                required
                 value={perfil.foto}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                   atualizarEstado(e)

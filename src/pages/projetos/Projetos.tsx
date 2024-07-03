@@ -8,6 +8,7 @@ import { Toast, ToastAlert } from "../../utils/ToastAlert";
 import CardProjeto from "../../components/projetos/cardProjeto/CardProjeto";
 import Categoria from "../../models/Categoria";
 import Projeto from "../../models/Projeto";
+import SearchBar from "./searchBar/SearchBar";
 
 function Projetos() {
 
@@ -39,11 +40,15 @@ function Projetos() {
 
   const projetosParaExibir = categoriaSelecionada === null ? projetosSemFiltro : projetosAtuais;
 
+  const handleSearch = (projetos: Projeto[]) => {
+    setProjetos(projetos);
+  } 
+  
   async function buscarProjetos() {
     try {
       await buscar("/projetos/all", setProjetos);
     } catch (error: any) {
-      ToastAlert("Erro ao buscar as categorias", Toast.Warning);
+      ToastAlert("Erro ao buscar os projetos", Toast.Warning);
     }
   }
 
@@ -54,7 +59,7 @@ function Projetos() {
       ToastAlert("Não há categorias", Toast.Info);
     }
   }
-  
+
   function handleCategoriaClick(categoriaNome: string) {
     if (categoriaNome === categoriaSelecionada) {
       setCategoriaSelecionada(null);
@@ -62,21 +67,24 @@ function Projetos() {
       setCategoriaSelecionada(categoriaNome);
     }
   }
-  
+
   useEffect(() => {
     buscarProjetos();
-  }, [projetos.length])
-
-
-
-  useEffect(() => {
     buscarCategorias();
-    buscarProjetos();
-  }, [categoriaSelecionada, categorias.length])
+  }, []);
+
+  useEffect(() => {
+    if (categoriaSelecionada) {
+      setProjetos(projetosFiltrados);
+    } else {
+      setProjetos(projetos);
+    }
+  }, [categoriaSelecionada, projetos]);
+
+
 
   return (
     <>
-
       {projetos.length === 0 ? (
         <DNA
           visible={true}
@@ -105,7 +113,12 @@ function Projetos() {
                 </ListGroup.Item>
               ))}
 
+
+
             </ListGroup>
+
+            <SearchBar onSearch={handleSearch} onClear={buscarProjetos}/>
+
           </div>
 
           <div >
@@ -125,34 +138,45 @@ function Projetos() {
 
             <div className="flex overflow-x-auto text-sm justify-center mt-10">
 
-              {projetosParaExibir.length > 0 ? (
-
-                categoriaSelecionada === null
-                  ? <Pagination
+              {projetosParaExibir.length > 0 ?
+                (
+                  categoriaSelecionada === null ?
+                    totalPages > 1 ?
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={onPageChange}
+                      />
+                      :
+                      <Pagination
+                        className="hidden"
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={onPageChange}
+                      />
+                    :
+                    totalPagesComFiltro > 1 ?
+                      <Pagination
+                        currentPage={currentPage}
+                        totalPages={totalPagesComFiltro}
+                        onPageChange={onPageChange}
+                      /> :
+                      <Pagination
+                        className="hidden"
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={onPageChange}
+                      />
+                ) :
+                (
+                  <Pagination
+                    className="hidden"
                     currentPage={currentPage}
                     totalPages={totalPages}
                     onPageChange={onPageChange}
                   />
-                  : totalPagesComFiltro > 1
-                    ? <Pagination
-                      currentPage={currentPage}
-                      totalPages={totalPagesComFiltro}
-                      onPageChange={onPageChange}
-                    />
-                    : <Pagination
-                      className="hidden"
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      onPageChange={onPageChange}
-                    />
-              ) : (
-                <Pagination
-                  className="hidden"
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={onPageChange}
-                />
-              )}
+                )
+              }
             </div>
 
           </div>

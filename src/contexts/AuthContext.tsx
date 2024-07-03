@@ -4,6 +4,7 @@ import { logar } from "../services/Services";
 import { Toast, ToastAlert } from "../utils/ToastAlert";
 
 import UsuarioLogin from "../models/UsuarioLogin";
+import Usuario from "../models/Usuario";
 
 interface AuthContextProps {
   usuario: UsuarioLogin;
@@ -40,7 +41,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setIsLoading(false)
 
     } catch (error) {
-      ToastAlert("Dados do usuário inconsistentes", Toast.Warning)
+      ToastAlert("Dados de usuário inconsistentes", Toast.Warning)
       setIsLoading(false)
     }
   }

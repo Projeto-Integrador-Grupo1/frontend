@@ -8,10 +8,6 @@ import imgKetlyn from '../../assets/img/equipe/ketlyn.jpg';
 import imgValdeniza from '../../assets/img/equipe/valdeniza.jpg';
 import imgVinicius from '../../assets/img/equipe/vinicius.jpg';
 
-const links = [
-  { name: 'Projetos', href: '#' },
-]
-
 const valores = [
   {
     name: 'Transparência',
@@ -83,7 +79,7 @@ function Sobre() {
 
       {/* Header */}
 
-      <div className="relative isolate overflow-hidden bg-gray-900 py-32 sm:py-36">
+      <div className="relative isolate overflow-hidden bg-gray-900 py-32 sm:py-36" id="sobre">
         <img
           src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
           alt=""
@@ -121,22 +117,12 @@ function Sobre() {
             </p>
 
           </div>
-          <div className="mx-auto pt-16 sm:pt-12 max-w-2xl lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-xl sm:text-xl font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-              {links.map((link) => (
-                <a key={link.name} href={link.href}>
-                  {link.name} <span aria-hidden="true">&rarr;</span>
-                </a>
-              ))}
-            </div>
-
-          </div>
         </div>
       </div>
 
       {/* Valores */}
 
-      <section className="   px-6 py-16 sm:py-28 lg:px-8 ">
+      <section className="  px-6 py-16 sm:py-28 lg:px-8 " id="valores">
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none px-6">
           <div className="text-center text-xl font-semibold leading-8  sm:text-2xl sm:leading-9 ">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-cinza-100 sm:text-4xl">Nossos valores</h2>
@@ -145,11 +131,7 @@ function Sobre() {
                 {valores.map((valor) => (
                   <li >
                     <div className='flex flex-col' >
-                      {/* <img
-                          className="mx-auto h-10 w-10 rounded-full"
-                          src={valor.imageUrl}
-                          alt=""
-                        /> */}
+
 
                       <div className="mt-4 flex  items-center justify-center space-x-3 gap-4 text-2xl ">
                         <p className=" font-semibold text-gray-900 dark:text-cinza-100 ">{valor.name}</p>
@@ -169,7 +151,7 @@ function Sobre() {
 
       {/* Problema Social */}
 
-      <div className="bg-blue-100 dark:bg-gray-800 py-24 sm:py-16">
+      <div className="bg-blue-100 dark:bg-gray-800 py-24 sm:py-16" id="problema">
         <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
           <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-2 mx-auto max-w-7xl px-6 lg:px-8 pb-12 ">
             <div className="flex flex-col-reverse justify-center items-center mt-[-1rem] ">
@@ -195,7 +177,7 @@ function Sobre() {
 
       {/* Contato */}
 
-      <div className="bg-white-400 py-24 sm:py-26">
+      <div className="bg-white-400 py-24 sm:py-26" id="equipe">
         <div className="mx-auto grid max-w-7xl gap-x-10 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
           <div className="max-w-2xl">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-cinza-100 sm:text-4xl">Conheça nosso time</h2>
@@ -209,7 +191,7 @@ function Sobre() {
                 <div className="flex items-center gap-x-6">
                   <img className="h-28 w-28 rounded-full" src={equipe.imageUrl} alt="" />
                   <div>
-                    <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900 dark:text-cinza-100">{equipe.name}</h3>
+                    <h3 className="text-xl font-semibold leading-7 tracking-tight text-gray-900 dark:text-cinza-100" >{equipe.name}</h3>
                     <p className="text-base font-semibold leading-6 text-gray-500 dark:text-cinza-300">{equipe.role}</p>
                     <li key={equipe.name}>
                       <div className="flex items-center  gap-x-1 ">
