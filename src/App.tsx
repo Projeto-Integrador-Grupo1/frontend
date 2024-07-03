@@ -21,6 +21,7 @@ import EditarUsuario from "./pages/usuario/editarUsuario/EditarUsuario"
 import Perfil from "./pages/usuario/perfil/Perfil"
 import Admin from "./pages/admin/Admin"
 import Erros from "./pages/erros/Erros"
+import Tutoriais from "./pages/tutoriais/Tutoriais"
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
               <Route path="/editarUsuario/:id" element={<EditarUsuario />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/erros" element={<Erros />} />
+              <Route path="/tutoriais" element={<Tutoriais />} />
             </Routes>
           </div>
           <FooterComponent />
