@@ -1,6 +1,6 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, Label, Select, TextInput } from 'flowbite-react';
+import { Button, Label, Select, Textarea, TextInput } from 'flowbite-react';
 import { RotatingLines } from 'react-loader-spinner';
 
 import { AuthContext } from '../../../contexts/AuthContext';
@@ -133,6 +133,15 @@ function FormProjeto() {
     });
   }
 
+  function atualizarEstadoTexto(e: ChangeEvent<HTMLTextAreaElement>) {
+    setProjeto({
+      ...projeto,
+      [e.target.name]: e.target.value,
+      categoria: categoria,
+      usuario: usuario,
+    });
+  }
+
   function retornar() {
     navigate('/meusProjetos');
   }
@@ -164,7 +173,7 @@ function FormProjeto() {
       <div className="justify-center lg:py-14 ">
         <div className='my-2'>
 
-          <Link to="/meusProjetos" className='hover:underline p-[10vw] lg:p-[30vw] dark:text-cinza-100 my-6'>
+          <Link to="/meusProjetos" className='hover:underline m-[10vw] lg:m-[30vw] dark:text-cinza-100 my-6'>
             Voltar
           </Link>
         </div>
@@ -203,16 +212,17 @@ function FormProjeto() {
                 />
               </div>
 
-              <TextInput
+              <Textarea
                 id="descricao"
-                type="text"
                 placeholder="Descrição"
                 name="descricao"
                 value={projeto.descricao}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarEstadoTexto(e)}
                 required
               />
+              
             </div>
+
 
             <div>
               <div className="mb-2 block">
