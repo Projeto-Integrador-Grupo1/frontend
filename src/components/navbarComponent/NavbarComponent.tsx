@@ -7,6 +7,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 import DropdownPerfil from "./dropdownPerfil/DropdownPerfil";
 import imgLogo from "../../assets/img/zerone-logo.png";
+import imgLogoDark from "../../assets/img/zerone-logo-claro.png";
+
 
 function NavbarComponent() {
 
@@ -16,11 +18,12 @@ function NavbarComponent() {
 
   if (usuario.token !== "") {
     navbarComponent = (
-      <div className="py-10">
+      <div className="">
         <Navbar className="fixed w-full z-50 top-0 start-0 bg-azul-200" fluid >
           <NavbarBrand >
             <Link to="/home">
-              <img src={imgLogo} className="mr-4 rounded-xl bg-cinza-100 w-32 lg:w-44 " alt="Logo Zerone" />
+              <img src={imgLogo} className="mr-4 rounded-xl bg-cinza-100 dark:bg-preto-400 dark:hidden w-32 lg:w-44 " alt="Logo Zerone" />
+              <img src={imgLogoDark} className="mr-4 rounded-xl bg-cinza-100 dark:bg-preto-400 hidden dark:block w-32 lg:w-44" alt="Logo Zerone" />
             </Link>
           </NavbarBrand>
 
@@ -55,10 +58,12 @@ function NavbarComponent() {
   } else {
     navbarComponent = (
 
+
       <Navbar className="fixed w-full z-50 top-0 start-0 bg-azul-200" fluid >
         <NavbarBrand >
           <Link to="/home">
-            <img src={imgLogo} className="mr-4 rounded-xl bg-cinza-100 w-32 lg:w-44 " alt="Logo Zerone" />
+            <img src={imgLogo} className="mr-4 rounded-xl bg-cinza-100 dark:bg-preto-400 dark:hidden w-32 lg:w-44 " alt="Logo Zerone" />
+            <img src={imgLogoDark} className="mr-4 rounded-xl bg-cinza-100 dark:bg-preto-400 hidden dark:block w-32 lg:w-44" alt="Logo Zerone" />
           </Link>
         </NavbarBrand>
 
@@ -95,6 +100,7 @@ function NavbarComponent() {
   }
   return (
     <>
+
       {navbarComponent}
     </>
   )
