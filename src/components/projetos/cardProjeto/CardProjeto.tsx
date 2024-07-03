@@ -58,7 +58,7 @@ function CardProjeto({ projeto }: CardProjetoProps) {
             </p>
 
             <p className="font-semibold text-gray-600 dark:text-gray-400 my-0">
-              Início: {dataLocal}
+              Última Atualização: {dataLocal}
             </p>
           </div>
 
@@ -111,7 +111,7 @@ function CardProjeto({ projeto }: CardProjetoProps) {
               Investimentos: {projeto.qtdDoacoes}
             </p>
             <p className="font-semibold text-gray-600 text-sm dark:text-gray-400 my-0">
-              Início: {dataLocal}
+              Última atualização: {dataLocal}
             </p>
           </div>
 

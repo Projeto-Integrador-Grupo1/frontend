@@ -58,7 +58,7 @@ function CardMeusProjetos({ projeto }: CardMeusProjetosProps) {
               Apoiadores: {projeto.qtdDoacoes}
             </p>
             <p className="font-semibold text-sm text-gray-600 dark:text-gray-400 my-0">
-              Início: {dataLocal}
+            Última Atualização: {dataLocal}
             </p>
           </div>
 
