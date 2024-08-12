@@ -26,7 +26,7 @@ function CardProjeto({ projeto }: CardProjetoProps) {
     dateStyle: "medium",
   }).format(dataDoBanco);
 
-  let cardComponent;
+  let cardComponent: any;
 
   if (usuario.token !== "" && usuario.email === projeto.usuario?.email) {
     cardComponent = (
