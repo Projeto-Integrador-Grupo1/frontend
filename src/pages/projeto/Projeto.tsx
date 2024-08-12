@@ -160,6 +160,70 @@ function Projeto() {
     navigate("/meusProjetos");
   }
 
+  function dataLimite() {
+    return <p>Este projeto não está mais recebendo doações</p>
+  }
+
+  function projetoFinalizado() {
+    return <p>Este projeto já recebeu o total de doações possíveis</p>;
+  }
+
+  function formularioDoacao(valorDoacao: number, setValorDoacao: (value: number) => void, disableButton: boolean, doar: (e: React.FormEvent) => void) {
+    return (
+      <form onSubmit={doar}>
+        <h3 className="text-xl font-bold my-4">Faça uma doação:</h3>
+        <div className="flex gap-2">
+          <label htmlFor="valor">
+            <span>R$ </span>
+            <input
+              id="valor"
+              type="number"
+              placeholder="Digite um valor"
+              className="border border-slate-700 rounded p-2 dark:bg-preto-300"
+              name="valor"
+              value={valorDoacao}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setValorDoacao(+e.target.value)
+              }
+            />
+          </label>
+
+          <Button className="bg-rosa-200" disabled={disableButton} type="submit">
+            {disableButton ? (
+              <RotatingLines
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="24"
+                visible={true}
+              />
+            ) : (
+              <span>Apoiar</span>
+            )}
+          </Button>
+        </div>
+      </form>
+    );
+  }
+
+  function botoesProjeto(projetoId: number, setOpenModal: (open: boolean) => void) {
+    return (
+      <div className="flex gap-4">
+        <Link to={`/editarProjeto/${projetoId}`}>
+          <button className="flex items-center gap-2 text-center text-xl lg:text-2xl font-semibold text-white bg-azul-200 rounded p-2 w-100">
+            Editar Projeto
+          </button>
+        </Link>
+        <button
+          onClick={() => setOpenModal(true)}
+          className="flex items-center gap-2 text-center text-xl lg:text-2xl font-semibold text-white bg-rosa-200 rounded p-2 w-100"
+        >
+          Receber Valor
+        </button>
+      </div>
+    );
+  }
+
   useEffect(() => {
     if (id !== undefined) {
       buscarPorId(id);
@@ -225,158 +289,28 @@ function Projeto() {
 
                 <div className="border-t py-2 mt-8">
                   {token !== "" ?
-                    (projeto.dataLimite < dataAtual ?
-                      (<p>Este projeto não está mais recebendo doações</p>) :
+                    (usuario.id !== projeto.usuario?.id ?
+                      (projeto.dataLimite < dataAtual ?
+                        (dataLimite()) :
 
-                      (usuario.id !== projeto.usuario?.id ?
-                        (
-                          projeto.valorMeta === projeto.valorAtual ?
-                            <p>Este projeto já recebeu o total de doações possíveis</p>
-                            :
-                            <form onSubmit={doar} >
-                              <h3 className="text-xl font-bold my-4">Faça uma doação:</h3>
-                              <div className="flex gap-2">
+                        (projeto.valorMeta === projeto.valorAtual ?
+                          projetoFinalizado() :
 
-                                <label htmlFor="valor">
-                                  <span>R$ </span>
-                                  <input
-                                    id="valor"
-                                    type="number"
-                                    placeholder="Digite um valor"
-                                    className="border border-slate-700 rounded p-2 dark:bg-preto-300"
-                                    name="valor"
-                                    value={valorDoacao}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                      setValorDoacao(+e.target.value)
-                                    }
-                                  />
-                                </label>
-
-                                <Button
-                                  className="bg-rosa-200"
-                                  disabled={disableButton}
-                                  type="submit"
-                                >
-                                  {disableButton ?
-                                    (
-                                      <RotatingLines
-                                        strokeColor="white"
-                                        strokeWidth="5"
-                                        animationDuration="0.75"
-                                        width="24"
-                                        visible={true}
-                                      />
-                                    ) : (<span>Apoiar</span>)}
-                                </Button>
-                              </div>
-                            </form>
-                        ) :
-                        (
-                          <>
-                            <div className="flex gap-4">
-
-                              <Link to={`/editarProjeto/${projeto.id}`}>
-                                <div >
-                                  <button className="flex items-center gap-2 text-center text-xl lg:text-2xl font-semibold text-white bg-azul-200 rounded p-2 w-100">
-                                    Editar Projeto
-                                  </button>
-                                </div>
-
-                              </Link>
-                              <button
-                                onClick={() => setOpenModal(true)}
-                                className="flex items-center gap-2 text-center text-xl lg:text-2xl font-semibold text-white bg-rosa-200 rounded p-2 w-100"
-                              >
-                                Receber Valor
-                              </button>
-                            </div>
-
-                            {
-                              projeto.valorAtual === 0 ?
-                                <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
-                                  <Modal.Header />
-                                  <Modal.Body>
-                                    <div className="">
-                                      <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-                                      <h3 className="text-lg text-center font-normal text-gray-500 dark:text-gray-400 mb-5">
-                                        Você não possui valores para receber no momento!
-                                      </h3>
-
-                                      <div className="flex justify-center gap-4">
-                                        <Button color="gray" onClick={() => setOpenModal(false)}>
-                                          <span>Voltar</span>
-                                        </Button>
-                                      </div>
-                                    </div>
-                                  </Modal.Body>
-                                </Modal>
-                                :
-                                projeto.valorMeta === projeto.valorAtual ?
-                                  <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
-                                    <Modal.Header />
-                                    <Modal.Body>
-                                      <div className="">
-                                        <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-                                        <h3 className="text-lg font-normal text-gray-500 dark:text-gray-400">
-                                          Deseja sacar o total arrecadado agora?
-                                        </h3>
-                                        <ul className=" list-disc p-5 dark:text-cinza-100">
-                                          <li> Não será possível receber mais doações para este projeto;</li>
-                                          <li> Este projeto será deletado da base de dados; </li>
-                                          <li> O valor a ser transferido refere-se à 70% do valor arrecadado. </li>
-
-                                        </ul>
-                                        <p className="text-rosa-200 dark:text-azul-200 text-xs mb-5">
-                                          Obs.: Conforme termo de uso da plataforma, 30% do valor arrecadado será destinado à Zerone.
-                                        </p>
-                                        <ul>
-                                          <li>
-
-                                          </li>
-                                        </ul>
-                                        <div className="flex justify-center gap-4">
-                                          <Button color="failure" onClick={deletarProjeto}>
-                                            <span>Receber Valor</span>
-                                          </Button>
-                                          <Button color="gray" onClick={() => setOpenModal(false)}>
-                                            <span>Cancelar</span>
-                                          </Button>
-                                        </div>
-                                      </div>
-                                    </Modal.Body>
-                                  </Modal> :
-                                  <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
-                                    <Modal.Header />
-                                    <Modal.Body>
-                                      <div className="">
-                                        <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
-                                        <h3 className="text-lg font-normal text-gray-500 dark:text-gray-400">
-                                          Tem certeza que sacar os valores arrecadados antes de atingir 100%?
-                                        </h3>
-                                        <ul className=" list-disc p-5 dark:text-cinza-100">
-                                          <li> Não será possível receber mais doações para este projeto;</li>
-                                          <li> Este projeto será deletado da base de dados; </li>
-                                          <li> O valor a ser transferido refere-se à 70% do valor arrecadado. </li>
-
-                                        </ul>
-                                        <p className="text-rosa-200 dark:text-azul-200 text-xs mb-5">
-                                          Obs.: Conforme termo de uso da plataforma, 30% do valor arrecadado será destinado à Zerone.
-                                        </p>
-                                        <div className="flex justify-center gap-4">
-                                          <Button color="failure" onClick={deletarProjeto}>
-                                            <span>Receber Valor</span>
-                                          </Button>
-                                          <Button color="gray" onClick={() => setOpenModal(false)}>
-                                            <span>Cancelar</span>
-                                          </Button>
-                                        </div>
-                                      </div>
-                                    </Modal.Body>
-                                  </Modal>
-                            }
-                          </>
+                          formularioDoacao(
+                            valorDoacao,
+                            setValorDoacao,
+                            disableButton,
+                            doar
+                          )
+                        )
+                      ) :
+                      (
+                        botoesProjeto(
+                          projeto.id,
+                          setOpenModal
                         )
                       )
+
                     ) :
                     (
                       <Link to="/login">
@@ -384,6 +318,85 @@ function Projeto() {
                           Apoiar
                         </Button>
                       </Link>
+                    )
+                  }
+
+                  {projeto.valorAtual === 0 ?
+                    (
+                      <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} dismissible popup>
+                        <Modal.Header />
+                        <Modal.Body>
+                          <div className="">
+                            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                            <h3 className="text-lg text-center font-normal text-gray-500 dark:text-gray-400 mb-5">
+                              Você não possui valores para receber no momento!
+                            </h3>
+
+                            <div className="flex justify-center gap-4">
+                              <Button color="gray" onClick={() => setOpenModal(false)}>
+                                <span>Voltar</span>
+                              </Button>
+                            </div>
+                          </div>
+                        </Modal.Body>
+                      </Modal>
+                    ) :
+
+                    (projeto.valorMeta === projeto.valorAtual ?
+                      <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} dismissible popup>
+                        <Modal.Header />
+                        <Modal.Body>
+                          <div className="">
+                            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                            <h3 className="text-lg font-normal text-gray-500 dark:text-gray-400">
+                              Deseja retirar o total arrecadado agora?
+                            </h3>
+                            <ul className=" list-disc p-5 dark:text-cinza-100">
+                              <li> Não será possível receber mais doações para este projeto;</li>
+                              <li> Este projeto será deletado da base de dados; </li>
+                              <li> O valor a ser transferido refere-se à 70% do valor arrecadado. </li>
+
+                            </ul>
+                            <p className="text-rosa-200 dark:text-azul-200 text-xs mb-5">
+                              Obs.: Conforme termo de uso da plataforma, 30% do valor arrecadado será destinado à Zerone.
+                            </p>
+                            <ul>
+                              <li>
+
+                              </li>
+                            </ul>
+                            <div className="flex justify-center gap-4">
+                              <Button color="failure" onClick={deletarProjeto}>
+                                <span>Receber Valor</span>
+                              </Button>
+                              <Button color="gray" onClick={() => setOpenModal(false)}>
+                                <span>Cancelar</span>
+                              </Button>
+                            </div>
+                          </div>
+                        </Modal.Body>
+                      </Modal> :
+
+                      <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} dismissible popup>
+                        <Modal.Header />
+                        <Modal.Body>
+                          <div className="">
+                            <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
+                            <h3 className=" mb-5 text-center text-lg font-normal text-gray-500 dark:text-gray-400">
+                              Valores arecadados só podem ser retirados após atingir 100% da meta.
+                            </h3>
+
+                            <div className="flex justify-center gap-4">
+                              <Button color="failure" onClick={deletarProjeto} disabled>
+                                <span>Receber Valor</span>
+                              </Button>
+                              <Button color="gray" onClick={() => setOpenModal(false)}>
+                                <span>Cancelar</span>
+                              </Button>
+                            </div>
+                          </div>
+                        </Modal.Body>
+                      </Modal>
                     )
                   }
                 </div>

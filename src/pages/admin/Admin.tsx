@@ -70,7 +70,7 @@ function Admin() {
                   </Link>
                 </button>
 
-                <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
+                <Modal show={openModal} size="md" onClose={() => setOpenModal(false)} popup dismissible >
                   <Modal.Header />
                   <Modal.Body>
                     <div className="text-center">
